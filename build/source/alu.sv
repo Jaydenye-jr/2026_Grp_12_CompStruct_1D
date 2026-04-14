@@ -13,7 +13,7 @@ module alu (
         output reg v,
         output reg n
     );
-    localparam _MP_SIZE_1403450 = 6'h20;
+    localparam _MP_SIZE_1112949288 = 6'h20;
     logic [31:0] M_adder_unit_a;
     logic [31:0] M_adder_unit_b;
     logic M_adder_unit_alufn0;
@@ -23,7 +23,7 @@ module alu (
     logic M_adder_unit_n;
     
     adder #(
-        .SIZE(_MP_SIZE_1403450)
+        .SIZE(_MP_SIZE_1112949288)
     ) adder_unit (
         .a(M_adder_unit_a),
         .b(M_adder_unit_b),

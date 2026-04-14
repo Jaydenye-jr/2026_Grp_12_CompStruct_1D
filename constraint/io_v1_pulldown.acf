@@ -1,5 +1,5 @@
 PINOUT(V1), STANDARD(LVCMOS33) {
-    /*pin io_led[0][0] B21
+    /*pin io_led[0][0] B21 //Unused Pinouts
     pin io_led[0][1] B20
     pin io_led[0][2] B18
     pin io_led[0][3] B17
@@ -111,13 +111,4 @@ PINOUT(V1), STANDARD(LVCMOS33) {
     pin seg_tens[5]     A28   // f (was a)
     pin seg_tens[6]     A31   // g 
 
-    // Not using the 3rd 7 segment any more
-    // Row 3: A24 A21 A18 A15 A12 A9 A6 A3
-    //pin seg_hundreds[0] A24   // a
-    //pin seg_hundreds[1] A21   // b
-    //pin seg_hundreds[2] A18   // c
-    //pin seg_hundreds[3] A15   // d
-    //pin seg_hundreds[4] A12   // e
-   // pin seg_hundreds[5] A9    // f
-    //pin seg_hundreds[6] A6    // g
 }

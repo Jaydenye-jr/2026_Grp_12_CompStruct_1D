@@ -38,12 +38,12 @@ module alchitry_top (
     );
     
     
-    localparam _MP_STAGES_1674275810 = 3'h4;
+    localparam _MP_STAGES_1348843172 = 3'h4;
     logic M_reset_cond_in;
     logic M_reset_cond_out;
     
     reset_conditioner #(
-        .STAGES(_MP_STAGES_1674275810)
+        .STAGES(_MP_STAGES_1348843172)
     ) reset_cond (
         .clk(1'h0 ? clk : M_clocks_clk_10),
         .in(M_reset_cond_in),
@@ -51,16 +51,16 @@ module alchitry_top (
     );
     
     
-    localparam _MP_CLK_FREQ_1154966321 = 24'h989680;
-    localparam _MP_MIN_DELAY_1154966321 = 5'h14;
-    localparam _MP_NUM_SYNC_1154966321 = 2'h2;
+    localparam _MP_CLK_FREQ_240766866 = 24'h989680;
+    localparam _MP_MIN_DELAY_240766866 = 5'h14;
+    localparam _MP_NUM_SYNC_240766866 = 2'h2;
     logic M_btn_cond_in;
     logic M_btn_cond_out;
     
     button_conditioner #(
-        .CLK_FREQ(_MP_CLK_FREQ_1154966321),
-        .MIN_DELAY(_MP_MIN_DELAY_1154966321),
-        .NUM_SYNC(_MP_NUM_SYNC_1154966321)
+        .CLK_FREQ(_MP_CLK_FREQ_240766866),
+        .MIN_DELAY(_MP_MIN_DELAY_240766866),
+        .NUM_SYNC(_MP_NUM_SYNC_240766866)
     ) btn_cond (
         .clk(1'h0 ? clk : M_clocks_clk_10),
         .in(M_btn_cond_in),
@@ -104,8 +104,8 @@ module alchitry_top (
     );
     
     
-    localparam _MP_DISPLAY_COUNTERWIDTH_1232337217 = 5'h14;
-    localparam _MP_FEEDBACK_COUNTERWIDTH_1232337217 = 5'h15;
+    localparam _MP_DISPLAY_COUNTERWIDTH_224750400 = 5'h14;
+    localparam _MP_FEEDBACK_COUNTERWIDTH_224750400 = 5'h15;
     logic M_led_buzz_buzz_pulse;
     logic M_led_buzz_miss_pulse;
     logic M_led_buzz_ok_pulse;
@@ -117,8 +117,8 @@ module alchitry_top (
     logic M_led_buzz_good_led;
     
     led_buzz #(
-        .DISPLAY_COUNTERWIDTH(_MP_DISPLAY_COUNTERWIDTH_1232337217),
-        .FEEDBACK_COUNTERWIDTH(_MP_FEEDBACK_COUNTERWIDTH_1232337217)
+        .DISPLAY_COUNTERWIDTH(_MP_DISPLAY_COUNTERWIDTH_224750400),
+        .FEEDBACK_COUNTERWIDTH(_MP_FEEDBACK_COUNTERWIDTH_224750400)
     ) led_buzz (
         .clk(1'h0 ? clk : M_clocks_clk_10),
         .rst(rst),

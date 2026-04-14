@@ -3,12 +3,12 @@
 # SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
 # IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
 # SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Tue Apr 14 12:44:04 2026
-# Process ID         : 46812
-# Current directory  : C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1
+# Start of session at: Tue Apr 14 18:03:44 2026
+# Process ID         : 34812
+# Current directory  : C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1
 # Command line       : vivado.exe -log alchitry_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source alchitry_top.tcl
-# Log file           : C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/alchitry_top.vds
-# Journal file       : C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1\vivado.jou
+# Log file           : C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/alchitry_top.vds
+# Journal file       : C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1\vivado.jou
 # Running On         : JayZenbook
 # Platform           : Windows Server 2016 or Windows 10
 # Operating System   : 26200
@@ -19,10 +19,10 @@
 # Host memory        : 16506 MB
 # Swap memory        : 25769 MB
 # Total Virtual      : 42275 MB
-# Available Virtual  : 11174 MB
+# Available Virtual  : 11039 MB
 #-----------------------------------------------------------
 source alchitry_top.tcl -notrace
-create_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:10 . Memory (MB): peak = 524.594 ; gain = 220.047
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 524.316 ; gain = 218.801
 Command: synth_design -top alchitry_top -part xc7a35tftg256-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
@@ -30,110 +30,110 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tftg256-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 56608
+INFO: [Synth 8-7075] Helper process launched with PID 24904
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1266.895 ; gain = 539.258
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1266.160 ; gain = 538.430
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'alchitry_top' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/alchitry_top.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/.Xil/Vivado-46812-JayZenbook/realtime/clk_wiz_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/.Xil/Vivado-46812-JayZenbook/realtime/clk_wiz_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'reset_conditioner' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/reset_conditioner.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'alchitry_top' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/alchitry_top.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/.Xil/Vivado-34812-JayZenbook/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/.Xil/Vivado-34812-JayZenbook/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'reset_conditioner' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/reset_conditioner.sv:7]
 	Parameter STAGES bound to: 3'b100 
-INFO: [Synth 8-6155] done synthesizing module 'reset_conditioner' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/reset_conditioner.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'button_conditioner' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/button_conditioner.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'reset_conditioner' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/reset_conditioner.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'button_conditioner' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/button_conditioner.sv:7]
 	Parameter CLK_FREQ bound to: 24'b100110001001011010000000 
 	Parameter MIN_DELAY bound to: 5'b10100 
 	Parameter NUM_SYNC bound to: 2'b10 
-INFO: [Synth 8-6157] synthesizing module 'pipeline' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/pipeline.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'pipeline' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/pipeline.sv:7]
 	Parameter DEPTH bound to: 2'b10 
-INFO: [Synth 8-6155] done synthesizing module 'pipeline' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/pipeline.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'button_conditioner' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/button_conditioner.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'game_datapath' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'clk_1ms' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/clk_1ms.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'pipeline' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/pipeline.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'button_conditioner' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/button_conditioner.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'game_datapath' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'clk_1ms' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/clk_1ms.sv:7]
 	Parameter CLK_PERIOD_GAP bound to: 14'b10011100001110 
 	Parameter WIDTH bound to: 4'b1111 
-INFO: [Synth 8-6155] done synthesizing module 'clk_1ms' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/clk_1ms.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'edge_detector' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/edge_detector.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'clk_1ms' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/clk_1ms.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'edge_detector' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/edge_detector.sv:7]
 	Parameter RISE bound to: 1'b1 
 	Parameter FALL bound to: 1'b0 
-INFO: [Synth 8-6155] done synthesizing module 'edge_detector' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/edge_detector.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'cu' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/cu.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'edge_detector__parameterized0' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/edge_detector.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'edge_detector' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/edge_detector.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'cu' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/cu.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'edge_detector__parameterized0' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/edge_detector.sv:7]
 	Parameter RISE bound to: 1'b1 
 	Parameter FALL bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'edge_detector__parameterized0' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/edge_detector.sv:7]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/cu.sv:119]
-INFO: [Synth 8-6155] done synthesizing module 'cu' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/cu.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'regfile' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/regfile.sv:7]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/regfile.sv:57]
-INFO: [Synth 8-6155] done synthesizing module 'regfile' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/regfile.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'alu' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/alu.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'adder' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/adder.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'edge_detector__parameterized0' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/edge_detector.sv:7]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/cu.sv:119]
+INFO: [Synth 8-6155] done synthesizing module 'cu' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/cu.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'regfile' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/regfile.sv:7]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/regfile.sv:57]
+INFO: [Synth 8-6155] done synthesizing module 'regfile' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/regfile.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'alu' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/alu.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'adder' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/adder.sv:7]
 	Parameter SIZE bound to: 6'b100000 
-INFO: [Synth 8-6157] synthesizing module 'rca' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/rca.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'rca' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/rca.sv:7]
 	Parameter SIZE bound to: 6'b100000 
-INFO: [Synth 8-6157] synthesizing module 'fa' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/fa.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'fa' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/fa.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'rca' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/rca.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'adder' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/adder.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'boolean' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/boolean.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'mux_4' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_4.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'mux_2' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_2.sv:7]
-INFO: [Synth 8-226] default block is never used [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_2.sv:14]
-INFO: [Synth 8-6155] done synthesizing module 'mux_2' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_2.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'mux_4' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_4.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'boolean' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/boolean.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'compare' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/compare.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'compare' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/compare.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'shifter' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'left_shifter' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/left_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'fa' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/fa.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'fa' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/fa.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'rca' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/rca.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'adder' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/adder.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'boolean' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/boolean.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'mux_4' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_4.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'mux_2' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_2.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_2.sv:14]
+INFO: [Synth 8-6155] done synthesizing module 'mux_2' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_2.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'mux_4' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_4.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'boolean' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/boolean.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'compare' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/compare.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'compare' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/compare.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'shifter' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'left_shifter' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
 	Parameter SHIFT bound to: 5'b10000 
 	Parameter SIZE bound to: 6'b100000 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized0' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized0' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
 	Parameter SHIFT bound to: 4'b1000 
 	Parameter SIZE bound to: 6'b100000 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized0' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized1' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized0' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized1' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
 	Parameter SHIFT bound to: 3'b100 
 	Parameter SIZE bound to: 6'b100000 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized1' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized2' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized1' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized2' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
 	Parameter SHIFT bound to: 2'b10 
 	Parameter SIZE bound to: 6'b100000 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized2' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized3' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized2' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'x_bit_left_shifter__parameterized3' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
 	Parameter SHIFT bound to: 1'b1 
 	Parameter SIZE bound to: 6'b100000 
-INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized3' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'left_shifter' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/left_shifter.sv:7]
-WARNING: [Synth 8-689] width (6) of port connection 'b' does not match port width (5) of module 'left_shifter' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/shifter.sv:18]
-INFO: [Synth 8-6155] done synthesizing module 'shifter' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/shifter.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'multiplier' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/multiplier.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'multiplier' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/multiplier.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'absolute' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/absolute.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'absolute' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/absolute.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/alu.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'rom' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/rom.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'rom' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/rom.sv:7]
-WARNING: [Synth 8-689] width (32) of port connection 'addr' does not match port width (6) of module 'rom' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv:142]
-INFO: [Synth 8-6157] synthesizing module 'led_buzz' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/led_buzz.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'x_bit_left_shifter__parameterized3' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'left_shifter' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/left_shifter.sv:7]
+WARNING: [Synth 8-689] width (6) of port connection 'b' does not match port width (5) of module 'left_shifter' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/shifter.sv:18]
+INFO: [Synth 8-6155] done synthesizing module 'shifter' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/shifter.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'multiplier' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/multiplier.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'multiplier' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/multiplier.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'absolute' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/absolute.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'absolute' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/absolute.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/alu.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'rom' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/rom.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'rom' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/rom.sv:7]
+WARNING: [Synth 8-689] width (32) of port connection 'addr' does not match port width (6) of module 'rom' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv:142]
+INFO: [Synth 8-6157] synthesizing module 'led_buzz' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/led_buzz.sv:7]
 	Parameter DISPLAY_COUNTERWIDTH bound to: 5'b10100 
 	Parameter FEEDBACK_COUNTERWIDTH bound to: 5'b10101 
-INFO: [Synth 8-6155] done synthesizing module 'led_buzz' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/led_buzz.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'metronome_led' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/metronome_led.sv:7]
-INFO: [Synth 8-226] default block is never used [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/metronome_led.sv:29]
-INFO: [Synth 8-6155] done synthesizing module 'metronome_led' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/metronome_led.sv:7]
-INFO: [Synth 8-226] default block is never used [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv:186]
-INFO: [Synth 8-226] default block is never used [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv:216]
-INFO: [Synth 8-226] default block is never used [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv:249]
-INFO: [Synth 8-6155] done synthesizing module 'game_datapath' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'score_display' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/score_display.sv:7]
-INFO: [Synth 8-6157] synthesizing module 'seven_seg' [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/seven_seg.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'seven_seg' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/seven_seg.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'score_display' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/score_display.sv:7]
-INFO: [Synth 8-6155] done synthesizing module 'alchitry_top' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/alchitry_top.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'led_buzz' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/led_buzz.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'metronome_led' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/metronome_led.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/metronome_led.sv:29]
+INFO: [Synth 8-6155] done synthesizing module 'metronome_led' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/metronome_led.sv:7]
+INFO: [Synth 8-226] default block is never used [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv:186]
+INFO: [Synth 8-226] default block is never used [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv:216]
+INFO: [Synth 8-226] default block is never used [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv:249]
+INFO: [Synth 8-6155] done synthesizing module 'game_datapath' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'score_display' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/score_display.sv:7]
+INFO: [Synth 8-6157] synthesizing module 'seven_seg' [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/seven_seg.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'seven_seg' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/seven_seg.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'score_display' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/score_display.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'alchitry_top' (0#1) [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/alchitry_top.sv:7]
 WARNING: [Synth 8-3917] design alchitry_top has port led[7] driven by constant 0
 WARNING: [Synth 8-3917] design alchitry_top has port led[6] driven by constant 0
 WARNING: [Synth 8-3917] design alchitry_top has port led[5] driven by constant 0
@@ -209,58 +209,58 @@ WARNING: [Synth 8-7129] Port io_dip[0][2] in module alchitry_top is either uncon
 WARNING: [Synth 8-7129] Port io_dip[0][1] in module alchitry_top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_dip[0][0] in module alchitry_top is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1412.555 ; gain = 684.918
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1412.457 ; gain = 684.727
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1412.555 ; gain = 684.918
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1412.457 ; gain = 684.727
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1412.555 ; gain = 684.918
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1412.457 ; gain = 684.727
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.068 . Memory (MB): peak = 1412.555 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.046 . Memory (MB): peak = 1412.457 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [c:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clocks'
-Finished Parsing XDC File [c:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clocks'
-Parsing XDC File [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/constraint/alchitry.xdc]
+Parsing XDC File [c:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clocks'
+Finished Parsing XDC File [c:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clocks'
+Parsing XDC File [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/constraint/alchitry.xdc]
 CRITICAL WARNING: [Constraints 18-1056] Clock 'clk_0' completely overrides clock 'clk'.
-New: create_clock -period 10.000 -name clk_0 -waveform {0.000 5.000} [get_ports clk], [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/constraint/alchitry.xdc:4]
-Previous: create_clock -period 10.000 [get_ports clk], [c:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc:1]
+New: create_clock -period 10.000 -name clk_0 -waveform {0.000 5.000} [get_ports clk], [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/constraint/alchitry.xdc:4]
+Previous: create_clock -period 10.000 [get_ports clk], [c:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc:1]
 Resolution: Review the constraint files and remove the redundant clock definition(s). If the clock constraints are not saved in a file, you can first save the constraints to an XDC file and reload the design once the constraints have been corrected.
-Finished Parsing XDC File [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/constraint/alchitry.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/constraint/alchitry.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/alchitry_top_propImpl.xdc].
+Finished Parsing XDC File [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/constraint/alchitry.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/constraint/alchitry.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/alchitry_top_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/alchitry_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/constraint/au_props.xdc]
-Finished Parsing XDC File [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/constraint/au_props.xdc]
-Parsing XDC File [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/dont_touch.xdc]
-Finished Parsing XDC File [C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/dont_touch.xdc]
+Parsing XDC File [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/constraint/au_props.xdc]
+Finished Parsing XDC File [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/constraint/au_props.xdc]
+Parsing XDC File [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1491.652 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1489.496 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.051 . Memory (MB): peak = 1491.652 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.037 . Memory (MB): peak = 1489.496 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1491.652 ; gain = 764.016
+Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1489.496 ; gain = 761.766
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tftg256-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1491.652 ; gain = 764.016
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1489.496 ; gain = 761.766
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1491.652 ; gain = 764.016
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1489.496 ; gain = 761.766
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'D_game_fsm_q_reg' in module 'cu'
 ---------------------------------------------------------------------------------------------------
@@ -311,7 +311,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'D_game_fsm_q_reg' in module
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'D_game_fsm_q_reg' using encoding 'sequential' in module 'cu'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:31 . Memory (MB): peak = 1491.652 ; gain = 764.016
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 1489.496 ; gain = 761.766
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -402,19 +402,18 @@ WARNING: [Synth 8-7129] Port io_dip[0][2] in module alchitry_top is either uncon
 WARNING: [Synth 8-7129] Port io_dip[0][1] in module alchitry_top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_dip[0][0] in module alchitry_top is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:56 ; elapsed = 00:02:17 . Memory (MB): peak = 1650.566 ; gain = 922.930
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:53 ; elapsed = 00:00:56 . Memory (MB): peak = 1651.723 ; gain = 923.992
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 ROM: Preliminary Mapping Report
-+--------------+------------+---------------+----------------+
-|Module Name   | RTL Object | Depth x Width | Implemented As | 
-+--------------+------------+---------------+----------------+
-|rom           | ROM        | 64x17         | LUT            | 
-|game_datapath | rom/ROM    | 64x17         | LUT            | 
-+--------------+------------+---------------+----------------+
++------------+------------+---------------+----------------+
+|Module Name | RTL Object | Depth x Width | Implemented As | 
++------------+------------+---------------+----------------+
+|rom         | ROM        | 64x17         | LUT            | 
++------------+------------+---------------+----------------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -423,19 +422,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:11 ; elapsed = 00:02:36 . Memory (MB): peak = 1659.445 ; gain = 931.809
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:58 ; elapsed = 00:01:01 . Memory (MB): peak = 1657.613 ; gain = 929.883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:03:35 ; elapsed = 00:04:21 . Memory (MB): peak = 2032.266 ; gain = 1304.629
+Finished Timing Optimization : Time (s): cpu = 00:01:30 ; elapsed = 00:01:34 . Memory (MB): peak = 2031.355 ; gain = 1303.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:03:46 ; elapsed = 00:04:34 . Memory (MB): peak = 2032.266 ; gain = 1304.629
+Finished Technology Mapping : Time (s): cpu = 00:01:33 ; elapsed = 00:01:37 . Memory (MB): peak = 2031.355 ; gain = 1303.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -453,37 +452,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:03:57 ; elapsed = 00:04:47 . Memory (MB): peak = 2032.266 ; gain = 1304.629
+Finished IO Insertion : Time (s): cpu = 00:01:37 ; elapsed = 00:01:41 . Memory (MB): peak = 2031.355 ; gain = 1303.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:03:57 ; elapsed = 00:04:47 . Memory (MB): peak = 2032.266 ; gain = 1304.629
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:37 ; elapsed = 00:01:41 . Memory (MB): peak = 2031.355 ; gain = 1303.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:03:57 ; elapsed = 00:04:48 . Memory (MB): peak = 2032.266 ; gain = 1304.629
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:37 ; elapsed = 00:01:41 . Memory (MB): peak = 2031.355 ; gain = 1303.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:03:57 ; elapsed = 00:04:48 . Memory (MB): peak = 2032.266 ; gain = 1304.629
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:37 ; elapsed = 00:01:41 . Memory (MB): peak = 2031.355 ; gain = 1303.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:03:57 ; elapsed = 00:04:48 . Memory (MB): peak = 2032.266 ; gain = 1304.629
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:37 ; elapsed = 00:01:42 . Memory (MB): peak = 2031.355 ; gain = 1303.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:03:58 ; elapsed = 00:04:48 . Memory (MB): peak = 2032.266 ; gain = 1304.629
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:37 ; elapsed = 00:01:42 . Memory (MB): peak = 2031.355 ; gain = 1303.625
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -516,18 +515,18 @@ Report Cell Usage:
 |14    |OBUF    |    32|
 +------+--------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:03:58 ; elapsed = 00:04:48 . Memory (MB): peak = 2032.266 ; gain = 1304.629
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:37 ; elapsed = 00:01:42 . Memory (MB): peak = 2031.355 ; gain = 1303.625
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 37 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:03:42 ; elapsed = 00:04:44 . Memory (MB): peak = 2032.266 ; gain = 1225.531
-Synthesis Optimization Complete : Time (s): cpu = 00:03:58 ; elapsed = 00:04:49 . Memory (MB): peak = 2032.266 ; gain = 1304.629
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:25 ; elapsed = 00:01:39 . Memory (MB): peak = 2031.355 ; gain = 1226.586
+Synthesis Optimization Complete : Time (s): cpu = 00:01:37 ; elapsed = 00:01:42 . Memory (MB): peak = 2031.355 ; gain = 1303.625
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.083 . Memory (MB): peak = 2032.266 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.023 . Memory (MB): peak = 2031.355 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 78 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 2032.266 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2031.355 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
@@ -535,9 +534,9 @@ Synth Design complete | Checksum: 4c2b378b
 INFO: [Common 17-83] Releasing license: Synthesis
 90 Infos, 113 Warnings, 1 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:04:08 ; elapsed = 00:05:06 . Memory (MB): peak = 2032.266 ; gain = 1495.027
+synth_design: Time (s): cpu = 00:01:41 ; elapsed = 00:01:57 . Memory (MB): peak = 2031.355 ; gain = 1493.758
 INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 2032.266 ; gain = 0.000
-INFO: [Common 17-1381] The checkpoint 'C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/alchitry_top.dcp' has been generated.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 2031.355 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/alchitry_top.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file alchitry_top_utilization_synth.rpt -pb alchitry_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Apr 14 12:49:28 2026...
+INFO: [Common 17-206] Exiting Vivado at Tue Apr 14 18:05:53 2026...

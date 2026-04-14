@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/alchitry_top.tcl"
+  variable script "C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1/alchitry_top.tcl"
   variable category "vivado_synth"
 }
 
@@ -64,48 +64,48 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.cache/wt} [current_project]
-set_property parent.project_path {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.xpr} [current_project]
+set_property webtalk.parent_dir {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.cache/wt} [current_project]
+set_property parent.project_path {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.xpr} [current_project]
 set_property XPM_LIBRARIES XPM_CDC [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo {c:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.cache/ip} [current_project]
+set_property ip_output_repo {c:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib -sv {
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/absolute.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/adder.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/alu.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/boolean.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/button_conditioner.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/clk_1ms.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/compare.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/cu.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/edge_detector.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/fa.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/led_buzz.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/left_shifter.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/metronome_led.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/multiplier.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_2.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_4.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/pipeline.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/rca.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/regfile.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/reset_conditioner.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/rom.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/score_display.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/seven_seg.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/shifter.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv}
-  {C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/alchitry_top.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/absolute.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/adder.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/alu.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/boolean.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/button_conditioner.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/clk_1ms.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/compare.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/cu.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/edge_detector.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/fa.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/game_datapath.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/led_buzz.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/left_shifter.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/metronome_led.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/multiplier.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_2.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/mux_4.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/pipeline.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/rca.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/regfile.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/reset_conditioner.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/rom.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/score_display.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/seven_seg.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/shifter.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/x_bit_left_shifter.sv}
+  {C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/imports/source/alchitry_top.sv}
 }
-read_ip -quiet {{C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci}}
-set_property used_in_implementation false [get_files -all {{c:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc}}]
-set_property used_in_implementation false [get_files -all {{c:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc}}]
-set_property used_in_implementation false [get_files -all {{c:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc}}]
+read_ip -quiet {{C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci}}
+set_property used_in_implementation false [get_files -all {{c:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc}}]
+set_property used_in_implementation false [get_files -all {{c:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc}}]
+set_property used_in_implementation false [get_files -all {{c:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc}}]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -116,11 +116,11 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc {{C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/constraint/alchitry.xdc}}
-set_property used_in_implementation false [get_files {{C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/constraint/alchitry.xdc}}]
+read_xdc {{C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/constraint/alchitry.xdc}}
+set_property used_in_implementation false [get_files {{C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/constraint/alchitry.xdc}}]
 
-read_xdc {{C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/constraint/au_props.xdc}}
-set_property used_in_implementation false [get_files {{C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/constraint/au_props.xdc}}]
+read_xdc {{C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/constraint/au_props.xdc}}
+set_property used_in_implementation false [get_files {{C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/constraint/au_props.xdc}}]
 
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]

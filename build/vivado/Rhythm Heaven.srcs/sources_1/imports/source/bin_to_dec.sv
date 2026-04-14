@@ -11,39 +11,39 @@ module bin_to_dec #(
         input wire [($clog2((64'(4'ha) ** (DIGITS))))-1:0] value,
         output reg [(DIGITS)-1:0][3:0] digits
     );
-    logic [31:0] R_064e3925_j;
-    logic [31:0] RR_064e3925_j;
-    logic [31:0] R_554caf35_i;
-    logic [31:0] RR_554caf35_i;
-    logic [($unsigned(($clog2($bits(value)+1))'($bits(value))))-1:0] L_25133010_remainder;
-    logic L_25133010_blank;
-    logic [($unsigned(($clog2($bits(value)+1))'($bits(value))))-1:0] L_5904832d_scale;
-    logic [($unsigned(($clog2($bits(value)+1))'($bits(value))))-1:0] L_093192ea_sub_value;
+    logic [31:0] R_0c303906_j;
+    logic [31:0] RR_0c303906_j;
+    logic [31:0] R_366417e7_i;
+    logic [31:0] RR_366417e7_i;
+    logic [($unsigned(($clog2($bits(value)+1))'($bits(value))))-1:0] L_09141b24_remainder;
+    logic L_09141b24_blank;
+    logic [($unsigned(($clog2($bits(value)+1))'($bits(value))))-1:0] L_5ca4b08f_scale;
+    logic [($unsigned(($clog2($bits(value)+1))'($bits(value))))-1:0] L_4f72f5a3_sub_value;
     always @* begin
         digits = {DIGITS{{4'hb}}};
-        L_25133010_remainder = value;
-        L_25133010_blank = !LEADING_ZEROS;
+        L_09141b24_remainder = value;
+        L_09141b24_blank = !LEADING_ZEROS;
         if (value < (64'(4'ha) ** (DIGITS))) begin
-            for (RR_064e3925_j = 0; RR_064e3925_j < DIGITS; RR_064e3925_j = RR_064e3925_j + 1) begin
-        R_064e3925_j = ((($bits(DIGITS) > $bits(1'h1) ? $bits(DIGITS) : $bits(1'h1)) + 1)'(DIGITS - 1'h1)) + RR_064e3925_j * (-1'sh1);
-                L_5904832d_scale = (64'(4'ha) ** (R_064e3925_j));
-                if (L_25133010_remainder < L_5904832d_scale) begin
-                    if (R_064e3925_j != 1'h0 && L_25133010_blank) begin
-                        digits[R_064e3925_j] = 4'ha;
+            for (RR_0c303906_j = 0; RR_0c303906_j < DIGITS; RR_0c303906_j = RR_0c303906_j + 1) begin
+        R_0c303906_j = ((($bits(DIGITS) > $bits(1'h1) ? $bits(DIGITS) : $bits(1'h1)) + 1)'(DIGITS - 1'h1)) + RR_0c303906_j * (-1'sh1);
+                L_5ca4b08f_scale = (64'(4'ha) ** (R_0c303906_j));
+                if (L_09141b24_remainder < L_5ca4b08f_scale) begin
+                    if (R_0c303906_j != 1'h0 && L_09141b24_blank) begin
+                        digits[R_0c303906_j] = 4'ha;
                     end else begin
-                        digits[R_064e3925_j] = 1'h0;
+                        digits[R_0c303906_j] = 1'h0;
                     end
                 end else begin
-                    L_25133010_blank = 1'h0;
-                    L_093192ea_sub_value = 1'h0;
-                    for (RR_554caf35_i = 0; RR_554caf35_i < 4'h9; RR_554caf35_i = RR_554caf35_i + 1) begin
-            R_554caf35_i = (4'h9) + RR_554caf35_i * (-1'sh1);
-                        if (L_25133010_remainder < ($bits(((($bits(R_554caf35_i) > $bits(1'h1) ? $bits(R_554caf35_i) : $bits(1'h1)) + 1)'(R_554caf35_i + 1'h1)))+$bits(L_5904832d_scale))'(((($bits(R_554caf35_i) > $bits(1'h1) ? $bits(R_554caf35_i) : $bits(1'h1)) + 1)'(R_554caf35_i + 1'h1)) * L_5904832d_scale)) begin
-                            digits[R_064e3925_j] = R_554caf35_i;
-                            L_093192ea_sub_value = ($bits(R_554caf35_i)+$bits(L_5904832d_scale))'(R_554caf35_i * L_5904832d_scale);
+                    L_09141b24_blank = 1'h0;
+                    L_4f72f5a3_sub_value = 1'h0;
+                    for (RR_366417e7_i = 0; RR_366417e7_i < 4'h9; RR_366417e7_i = RR_366417e7_i + 1) begin
+            R_366417e7_i = (4'h9) + RR_366417e7_i * (-1'sh1);
+                        if (L_09141b24_remainder < ($bits(((($bits(R_366417e7_i) > $bits(1'h1) ? $bits(R_366417e7_i) : $bits(1'h1)) + 1)'(R_366417e7_i + 1'h1)))+$bits(L_5ca4b08f_scale))'(((($bits(R_366417e7_i) > $bits(1'h1) ? $bits(R_366417e7_i) : $bits(1'h1)) + 1)'(R_366417e7_i + 1'h1)) * L_5ca4b08f_scale)) begin
+                            digits[R_0c303906_j] = R_366417e7_i;
+                            L_4f72f5a3_sub_value = ($bits(R_366417e7_i)+$bits(L_5ca4b08f_scale))'(R_366417e7_i * L_5ca4b08f_scale);
                         end
                     end
-                    L_25133010_remainder = (($bits(L_25133010_remainder) > $bits(L_093192ea_sub_value) ? $bits(L_25133010_remainder) : $bits(L_093192ea_sub_value)) + 1)'(L_25133010_remainder - L_093192ea_sub_value);
+                    L_09141b24_remainder = (($bits(L_09141b24_remainder) > $bits(L_4f72f5a3_sub_value) ? $bits(L_09141b24_remainder) : $bits(L_4f72f5a3_sub_value)) + 1)'(L_09141b24_remainder - L_4f72f5a3_sub_value);
                 end
             end
         end

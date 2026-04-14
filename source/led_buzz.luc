@@ -23,7 +23,7 @@ module led_buzz #(
             dff good_counter[FEEDBACK_COUNTERWIDTH]
             dff buzz_active    // Keeps track if the play LED is currently "running"
             dff miss_active //miss led active
-            dff ok_active //
+            dff ok_active 
             dff good_active
        
             }

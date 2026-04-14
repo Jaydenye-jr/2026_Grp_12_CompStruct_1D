@@ -1,6 +1,6 @@
 module clk_1ms #(
-    CLK_PERIOD_GAP = $is_sim() ? 49 : 9998, //9998 duration give a 1ms clk tick (aka has 9998 ticks btw each tick)
-    WIDTH = $is_sim() ? 7 : 15)//for testbenching
+    CLK_PERIOD_GAP = $is_sim() ? 49 : 9998, 
+    WIDTH = $is_sim() ? 7 : 15)
 
    (
     input clk,  
@@ -8,7 +8,6 @@ module clk_1ms #(
     output tick
   ) {
 
-  // Use an 18-bit register. The 18th bit (index 17) acts as our "Sign Bit"
     dff ctr[WIDTH](#INIT(CLK_PERIOD_GAP), .clk(clk), .rst(rst))
 
  
@@ -20,7 +19,6 @@ module clk_1ms #(
     ctr.d = ctr.q - 1
     
     // Check the Most Significant Bit (the Sign Bit). 
-    // We do NOT use '=='. We just look at the wire.
     if (ctr.q[WIDTH-1]) { 
       tick = 1             // Send the pulse
       ctr.d = CLK_PERIOD_GAP    // Reset back to 99,999

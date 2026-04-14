@@ -12,24 +12,24 @@ module rca #(
         input wire cin,
         output reg [(SIZE)-1:0] s
     );
-    logic [31:0] R_488aede4_i;
-    logic [31:0] RR_488aede4_i;
+    logic [31:0] R_6c04b400_i;
+    logic [31:0] RR_6c04b400_i;
     logic [(SIZE)-1:0] M_fulladders_a;
     logic [(SIZE)-1:0] M_fulladders_b;
     logic [(SIZE)-1:0] M_fulladders_cin;
     logic [(SIZE)-1:0] M_fulladders_s;
     logic [(SIZE)-1:0] M_fulladders_cout;
     
-    genvar idx_0_1071286321;
+    genvar idx_0_1727572104;
     
     generate
-        for (idx_0_1071286321 = 0; idx_0_1071286321 < SIZE; idx_0_1071286321 = idx_0_1071286321 + 1) begin: forLoop_idx_0_1071286321
+        for (idx_0_1727572104 = 0; idx_0_1727572104 < SIZE; idx_0_1727572104 = idx_0_1727572104 + 1) begin: forLoop_idx_0_1727572104
             fa fulladders (
-                .a(M_fulladders_a[idx_0_1071286321]),
-                .b(M_fulladders_b[idx_0_1071286321]),
-                .cin(M_fulladders_cin[idx_0_1071286321]),
-                .s(M_fulladders_s[idx_0_1071286321]),
-                .cout(M_fulladders_cout[idx_0_1071286321])
+                .a(M_fulladders_a[idx_0_1727572104]),
+                .b(M_fulladders_b[idx_0_1727572104]),
+                .cin(M_fulladders_cin[idx_0_1727572104]),
+                .s(M_fulladders_s[idx_0_1727572104]),
+                .cout(M_fulladders_cout[idx_0_1727572104])
             );
         end
     endgenerate
@@ -38,13 +38,13 @@ module rca #(
     logic [((($bits(SIZE) > $bits(1'h1) ? $bits(SIZE) : $bits(1'h1)) + 1)'(SIZE + 1'h1))-1:0] carries;
     always @* begin
         carries[1'h0] = cin;
-        for (RR_488aede4_i = 0; RR_488aede4_i < SIZE; RR_488aede4_i = RR_488aede4_i + 1) begin
-      R_488aede4_i = (0) + RR_488aede4_i * (1);
-            M_fulladders_a[R_488aede4_i] = a[R_488aede4_i];
-            M_fulladders_b[R_488aede4_i] = b[R_488aede4_i];
-            M_fulladders_cin[R_488aede4_i] = carries[R_488aede4_i];
-            s[R_488aede4_i] = M_fulladders_s[R_488aede4_i];
-            carries[(($bits(R_488aede4_i) > $bits(1'h1) ? $bits(R_488aede4_i) : $bits(1'h1)) + 1)'(R_488aede4_i + 1'h1)] = M_fulladders_cout[R_488aede4_i];
+        for (RR_6c04b400_i = 0; RR_6c04b400_i < SIZE; RR_6c04b400_i = RR_6c04b400_i + 1) begin
+      R_6c04b400_i = (0) + RR_6c04b400_i * (1);
+            M_fulladders_a[R_6c04b400_i] = a[R_6c04b400_i];
+            M_fulladders_b[R_6c04b400_i] = b[R_6c04b400_i];
+            M_fulladders_cin[R_6c04b400_i] = carries[R_6c04b400_i];
+            s[R_6c04b400_i] = M_fulladders_s[R_6c04b400_i];
+            carries[(($bits(R_6c04b400_i) > $bits(1'h1) ? $bits(R_6c04b400_i) : $bits(1'h1)) + 1)'(R_6c04b400_i + 1'h1)] = M_fulladders_cout[R_6c04b400_i];
         end
     end
     

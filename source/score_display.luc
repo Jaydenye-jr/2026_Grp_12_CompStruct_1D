@@ -1,14 +1,12 @@
 module score_display (
     input score[8],
-    // CHANGED: replaced seg[7]/sel[4] with three separate outputs
-    //added clk rst
+    // replaced seg[7]/sel[4] with three separate outputs
 
     output seg0[7],    // units
     output seg1[7],    // tens
     output seg2[7]     // hundreds
 ) {
-    // CHANGED: removed multi_seven_seg (no multiplexing needed)
-    // ADDED: one seven_seg decoder per display
+    //one seven_seg decoder per display
     seven_seg dec0
     seven_seg dec1
     seven_seg dec2
@@ -53,7 +51,7 @@ module score_display (
             }
         }
 
-        // CHANGED: feed into three decoders instead of multi_seven_seg
+        // feed into three decoders instead of multi_seven_seg
         dec0.char = units;
         dec1.char = tens;
         dec2.char = hundreds;

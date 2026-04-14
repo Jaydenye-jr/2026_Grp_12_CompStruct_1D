@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Alchitry/Rhythm Heaven Simulator Ver 13.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1'
+HD_PWD='C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

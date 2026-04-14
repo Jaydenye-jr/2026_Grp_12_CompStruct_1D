@@ -3,8 +3,8 @@ module cu (
     input rst,  // reset 
     input ms_clk, 
     input on_button_hit, 
-    input regfile_rd2[32], //for direct reading from regfile for reg 13 
-                           //so that can do comparison stuffs 
+    input regfile_rd2[32], 
+                           
     output alufn[6], 
     output asel[3], 
     output bsel[3], 
@@ -78,13 +78,13 @@ module cu (
     } 
  
     dff game_fsm[$width(GameStates)](#INIT(GameStates.GAMEOVER), .clk(clk), .rst(rst)) 
-    dff hit_flag(#INIT(0), .clk(clk), .rst(rst)) // for catching hits if it was not immediately processed 
+    dff hit_flag(#INIT(0), .clk(clk), .rst(rst)) 
     dff tick_flag(#INIT(0),.clk(clk), .rst(rst)) 
     edge_detector hit_edge(.clk(clk), .in(on_button_hit), #RISE(1)) 
     
-    //edge_detector tick_edge(.clk(clk), .in(clk), #RISE(1)) 
+
     always { 
-                // standard setting unless otherwise overwritten by each case  
+        // standard setting unless otherwise overwritten by each case  
         alufn = 0 
         asel = 0  
         bsel = 0 
@@ -105,13 +105,11 @@ module cu (
         tick_flag.d = tick_flag.q 
          
          
-         
-        if (hit_edge.out) {//to act as temp storage if a button hit was at 
-                           //the same time as ms clk ticks and thus is 
-                           //not immedately processed 
+        //Catching ms ticks/button hits while fsm is busy
+        if (hit_edge.out) {
            hit_flag.d = 1 
         } 
-        // Catch the 1ms tick NO MATTER WHAT the FSM is doing 
+
         if (ms_clk) { 
             tick_flag.d = 1 
         } 
@@ -142,7 +140,7 @@ module cu (
                     } 
  
                 GameStates.INIT_GC_REG: 
-                    alufn = b000000   //follow beta cpu code: ADD: 0x00 
+                    alufn = b000000   //ADD
                     asel = h1         //asel bsel only 3 bits but write hex for easier notation 
                     bsel = h1        
                     regfile_we = 1    //we 
@@ -250,23 +248,11 @@ module cu (
                         game_fsm.d = GameStates.COMPARE_GC_NOTE_PLAY_TS      
                     } 
                      
-               GameStates.SET_MTN_PULSE_1: 
-                    //alufn = b000000 
-                    //asel = h1 
-                    //bsel = h2 
-                    //regfile_we = 1 
-                    //regfile_wa = h7 
-                    //alu_out_sel = b00  
+               GameStates.SET_MTN_PULSE_1:  
                     mtn_pulse = 1 
                     game_fsm.d = GameStates.RESET_MTN_PULSE_0 
                      
                GameStates.RESET_MTN_PULSE_0: 
-                    //alufn = b000000 
-                    //asel = h1 
-                    //bsel = h0 
-                    //regfile_we = 1 
-                    //regfile_wa = h7 
-                    //alu_out_sel = b00  
                     mtn_pulse = 0 
                     game_fsm.d = GameStates.ADD_MTN_TS_1000 
                      
@@ -301,22 +287,10 @@ module cu (
                     } 
                      
               GameStates.SET_BUZZ_PULSE_1: 
-                    //alufn = b000000 
-                    //asel = h1 
-                    //bsel = h2 
-                    //regfile_we = 1 
-                    //regfile_wa = h8 
-                    //alu_out_sel = b11 
                     buzz_pulse = 1 
                     game_fsm.d = GameStates.RESET_BUZZ_PULSE_0 
                                          
               GameStates.RESET_BUZZ_PULSE_0: 
-                    //alufn = b000000 
-                    //asel = h1
-                    //bsel = h1 
-                    //regfile_we = 1 
-                    //regfile_wa = h8 
-                    //alu_out_sel = b11 
                     buzz_pulse = 0 
                     game_fsm.d = GameStates.INC_NOTE_PLAY_ADDR                     
                      
@@ -342,9 +316,9 @@ module cu (
                     game_fsm.d = GameStates.SUBTRACT_GC_100 
                      
              GameStates.SUBTRACT_GC_100: 
-                    alufn = b000001   // SUB (0x21) 
+                    alufn = b000001   // SUB 
                     asel = h0         // gc_reg 
-                    bsel = h5         // ASSUMPTION: bsel h5 = Constant 100 
+                    bsel = h5         
                     regfile_ra1 = h0   
                     regfile_we = 1 
                     regfile_wa = hC   // write to temp_reg_1 
@@ -371,22 +345,11 @@ module cu (
                     } 
                      
              GameStates.SET_MISS_PULSE_1: 
-                    //alufn = b000000 
-                    //asel = h1         // 0 
-                    //bsel = h2         // 1 
-                    //regfile_we = 1 
-                    //regfile_wa = h8   // miss_pulse_reg (Assuming h9) 
-                    //alu_out_sel = b00  
                     miss_pulse = 1 
                     game_fsm.d = GameStates.SET_MISS_PULSE_0 
                      
             GameStates.SET_MISS_PULSE_0: 
-                    //alufn = b000000 
-                    //asel = h1         // 0 
-                    //bsel = h1         // 0 
-                    //regfile_we = 1 
-                    //regfile_wa = h8    
-                    //alu_out_sel = b00  
+
                     miss_pulse = 0 
                     game_fsm.d = GameStates.INCR_NEXT_NOTE_ADDR 
                      
@@ -394,7 +357,7 @@ module cu (
              // BUTTON HIT LOGIC (Yellow & Green Branch) 
              // ============================================ 
             GameStates.SUBTRACT_GC_NEXT_NOTE_TS: 
-                    alufn = b000001   // SUB (0x21) 
+                    alufn = b000001   // SUB 
                     asel = h0 
                     bsel = h0 
                     regfile_ra1 = h0  // gc_reg
@@ -405,7 +368,7 @@ module cu (
                     game_fsm.d = GameStates.ABSOLUTE_TEMP 
                      
             GameStates.ABSOLUTE_TEMP: 
-                    alufn = b111111   // ASSUMPTION: Custom ALU opcode for ABSOLUTE value 
+                    alufn = b111111   // Custom ALU opcode for ABSOLUTE value 
                     asel = h0 
                     regfile_ra1 = hC  // Read the subtracted difference 
                     regfile_we = 1 
@@ -419,7 +382,7 @@ module cu (
                     bsel = h5         // ASSUMPTION: bsel h5 = Constant 100 
                     regfile_ra1 = hC 
                     regfile_we = 1 
-                    regfile_wa = hD   // Write boolean to temp_reg_2 so that absolute value remains in temp_1! 
+                    regfile_wa = hD   // Write boolean to temp_reg_2 so that absolute value remains in temp_1
                     alu_out_sel = b00 
                     game_fsm.d = GameStates.BRANCH_VALID_WINDOW 
                      
@@ -434,7 +397,7 @@ module cu (
             GameStates.COMPARE_TEMP_50: 
                     alufn = b110111   // CMPLE  
                     asel = h0 
-                    bsel = h6         // ASSUMPTION: bsel h6 = Constant 50 
+                    bsel = h6         // bsel h6 = 50 
                     regfile_ra1 = hC  // Read the original absolute value we saved earlier 
                     regfile_we = 1 
                     regfile_wa = hD   // Overwrite temp_reg_2 flag 
@@ -451,29 +414,17 @@ module cu (
                      
             // --- GREEN: Good Hit Logic --- 
             GameStates.SET_GOOD_PULSE_1: 
-                    //alufn = b000000 
-                    //asel = h1         // 0 
-                    //bsel = h2         // 1 
-                    //regfile_we = 1 
-                    //regfile_wa = hA   
-                    //alu_out_sel = b00  
                     good_pulse = 1 
                     game_fsm.d = GameStates.RESET_GOOD_PULSE_0         
                      
             GameStates.RESET_GOOD_PULSE_0: 
-                    //alufn = b000000 
-                    //asel = h1         // 0 
-                    //bsel = h1         // 0 
-                    //regfile_we = 1 
-                    //regfile_wa = hA    
-                    //alu_out_sel = b00 
                     good_pulse = 0 
                     game_fsm.d = GameStates.ADD_2_SCORE         
                      
             GameStates.ADD_2_SCORE: 
                     alufn = b000000   // ADD 
                     asel = h0 
-                    bsel = h7         // ASSUMPTION: bsel h7 = Constant 2 
+                    bsel = h7         // bsel h7 = 2 
                     regfile_ra1 = h6  // score_reg 
                     regfile_we = 1 
                     regfile_wa = h6 
@@ -482,22 +433,10 @@ module cu (
                      
             // --- YELLOW: Ok Hit Logic --- 
             GameStates.SET_OK_PULSE_1:
-                    //alufn = b000000 
-                    //asel = h1         // 0 
-                    //bsel = h2         // 1 
-                    //regfile_we = 1 
-                    //regfile_wa = h9    
-                    //alu_out_sel = b00  
                     ok_pulse = 1 
                     game_fsm.d = GameStates.RESET_OK_PULSE_0       
                      
             GameStates.RESET_OK_PULSE_0: 
-                    //alufn = b000000 
-                    //asel = h1         // 0 
-                    //bsel = h1         // 0 
-                    //regfile_we = 1 
-                    //regfile_wa = h9    
-                    //alu_out_sel = b00  
                     ok_pulse = 0 
                     game_fsm.d = GameStates.ADD_1_SCORE     
                      

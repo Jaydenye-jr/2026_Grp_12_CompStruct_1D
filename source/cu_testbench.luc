@@ -9,10 +9,6 @@ testbench cu_testbench {
         $tick()
         clk = 0
         $tick()
-        //clk = 1
-        //$tick()
-        //clk = 0
-        //$tick()
     }
     fun tick_clock_40(){
         repeat(40){
