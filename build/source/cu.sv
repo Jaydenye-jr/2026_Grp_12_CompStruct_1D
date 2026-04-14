@@ -70,13 +70,13 @@ module cu (
     logic [5:0] D_game_fsm_d, D_game_fsm_q = 6'h0;
     logic D_hit_flag_d, D_hit_flag_q = 1'h0;
     logic D_tick_flag_d, D_tick_flag_q = 1'h0;
-    localparam _MP_RISE_1091365423 = 1'h1;
-    localparam _MP_FALL_1091365423 = 1'h1;
+    localparam _MP_RISE_1674713149 = 1'h1;
+    localparam _MP_FALL_1674713149 = 1'h1;
     logic M_hit_edge_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_1091365423),
-        .FALL(_MP_FALL_1091365423)
+        .RISE(_MP_RISE_1674713149),
+        .FALL(_MP_FALL_1674713149)
     ) hit_edge (
         .clk(clk),
         .in(on_button_hit),

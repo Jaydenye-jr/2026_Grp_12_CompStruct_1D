@@ -19,13 +19,13 @@ module game_datapath (
     );
     logic [31:0] input_alu_a;
     logic [31:0] input_alu_b;
-    localparam _MP_CLK_PERIOD_GAP_287962298 = 14'h270e;
-    localparam _MP_WIDTH_287962298 = 4'hf;
+    localparam _MP_CLK_PERIOD_GAP_2014212230 = 14'h270e;
+    localparam _MP_WIDTH_2014212230 = 4'hf;
     logic M_slow_clk_tick;
     
     clk_1ms #(
-        .CLK_PERIOD_GAP(_MP_CLK_PERIOD_GAP_287962298),
-        .WIDTH(_MP_WIDTH_287962298)
+        .CLK_PERIOD_GAP(_MP_CLK_PERIOD_GAP_2014212230),
+        .WIDTH(_MP_WIDTH_2014212230)
     ) slow_clk (
         .rst(rst),
         .clk(clk),
@@ -33,13 +33,13 @@ module game_datapath (
     );
     
     
-    localparam _MP_RISE_295935278 = 1'h1;
-    localparam _MP_FALL_295935278 = 1'h0;
+    localparam _MP_RISE_884183492 = 1'h1;
+    localparam _MP_FALL_884183492 = 1'h0;
     logic M_edge_detector_clk_1ms_out;
     
     edge_detector #(
-        .RISE(_MP_RISE_295935278),
-        .FALL(_MP_FALL_295935278)
+        .RISE(_MP_RISE_884183492),
+        .FALL(_MP_FALL_884183492)
     ) edge_detector_clk_1ms (
         .in(M_slow_clk_tick),
         .clk(clk),
@@ -144,8 +144,8 @@ module game_datapath (
     );
     
     
-    localparam _MP_DISPLAY_COUNTERWIDTH_1434011829 = 5'h14;
-    localparam _MP_FEEDBACK_COUNTERWIDTH_1434011829 = 5'h15;
+    localparam _MP_DISPLAY_COUNTERWIDTH_1900056905 = 5'h14;
+    localparam _MP_FEEDBACK_COUNTERWIDTH_1900056905 = 5'h15;
     logic M_buzz_buzzer_pin;
     logic M_buzz_play_led;
     logic M_buzz_miss_led;
@@ -153,8 +153,8 @@ module game_datapath (
     logic M_buzz_good_led;
     
     led_buzz #(
-        .DISPLAY_COUNTERWIDTH(_MP_DISPLAY_COUNTERWIDTH_1434011829),
-        .FEEDBACK_COUNTERWIDTH(_MP_FEEDBACK_COUNTERWIDTH_1434011829)
+        .DISPLAY_COUNTERWIDTH(_MP_DISPLAY_COUNTERWIDTH_1900056905),
+        .FEEDBACK_COUNTERWIDTH(_MP_FEEDBACK_COUNTERWIDTH_1900056905)
     ) buzz (
         .clk(clk),
         .rst(rst),

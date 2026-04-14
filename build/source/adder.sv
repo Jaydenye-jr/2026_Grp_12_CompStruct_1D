@@ -15,16 +15,16 @@ module adder #(
         output reg v,
         output reg n
     );
-    logic [31:0] R_0cfe21ad_i;
-    logic [31:0] RR_0cfe21ad_i;
-    localparam _MP_SIZE_2078706128 = SIZE;
-    logic [(_MP_SIZE_2078706128)-1:0] M_rca_unit_a;
-    logic [(_MP_SIZE_2078706128)-1:0] M_rca_unit_b;
+    logic [31:0] R_169eeb30_i;
+    logic [31:0] RR_169eeb30_i;
+    localparam _MP_SIZE_1070529413 = SIZE;
+    logic [(_MP_SIZE_1070529413)-1:0] M_rca_unit_a;
+    logic [(_MP_SIZE_1070529413)-1:0] M_rca_unit_b;
     logic M_rca_unit_cin;
-    logic [(_MP_SIZE_2078706128)-1:0] M_rca_unit_s;
+    logic [(_MP_SIZE_1070529413)-1:0] M_rca_unit_s;
     
     rca #(
-        .SIZE(_MP_SIZE_2078706128)
+        .SIZE(_MP_SIZE_1070529413)
     ) rca_unit (
         .a(M_rca_unit_a),
         .b(M_rca_unit_b),
@@ -36,9 +36,9 @@ module adder #(
     logic [(SIZE)-1:0] xb;
     logic [(SIZE)-1:0] sum;
     always @* begin
-        for (RR_0cfe21ad_i = 0; RR_0cfe21ad_i < SIZE; RR_0cfe21ad_i = RR_0cfe21ad_i + 1) begin
-      R_0cfe21ad_i = (0) + RR_0cfe21ad_i * (1);
-            xb[R_0cfe21ad_i] = b[R_0cfe21ad_i] ^ alufn0;
+        for (RR_169eeb30_i = 0; RR_169eeb30_i < SIZE; RR_169eeb30_i = RR_169eeb30_i + 1) begin
+      R_169eeb30_i = (0) + RR_169eeb30_i * (1);
+            xb[R_169eeb30_i] = b[R_169eeb30_i] ^ alufn0;
         end
         M_rca_unit_a = a;
         M_rca_unit_b = xb;
