@@ -3,21 +3,8 @@
 module absolute (
     signed input in[32],
     output abs[32]
-) {
-    signed sig abs_calculate[32]
-    
+) { 
     always {
-        //if (in[31]) {  // in is a negative number
-        //    repeat(i, 31) {
-        //        abs_calculate[i] = in[i] ^ 1
-        //   }
-        //    abs_calculate[31] = 1b0
-        //    abs_calculate = abs_calculate + 1b1
-        //}
-        //else {         //in is a positive number
-        //   abs_calculate = in
-        //}
-        //abs = abs_calculate
         if (in[31]) {          // If the sign bit is 1 (negative number)
             // ~in flips all 32 bits simultaneously.
             // + 1 completes the Two's Complement negation.

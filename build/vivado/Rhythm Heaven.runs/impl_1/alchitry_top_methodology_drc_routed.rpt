@@ -1,0 +1,49 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Wed Apr 15 00:29:00 2026
+| Host         : JayZenbook running 64-bit major release  (build 9200)
+| Command      : report_methodology -file alchitry_top_methodology_drc_routed.rpt -pb alchitry_top_methodology_drc_routed.pb -rpx alchitry_top_methodology_drc_routed.rpx
+| Design       : alchitry_top
+| Device       : xc7a35tftg256-1
+| Speed File   : -1
+| Design State : Fully Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max checks: <unlimited>
+             Checks found: 2
++---------+----------+--------------------------------------------------------+--------+
+| Rule    | Severity | Description                                            | Checks |
++---------+----------+--------------------------------------------------------+--------+
+| LUTAR-1 | Warning  | LUT drives async reset alert                           | 1      |
+| XDCC-7  | Warning  | Scoped Clock constraint overwritten on the same source | 1      |
++---------+----------+--------------------------------------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell reset_cond/D_stage_q[3]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) reset_cond/D_stage_q_reg[0]/PRE, reset_cond/D_stage_q_reg[1]/PRE,
+reset_cond/D_stage_q_reg[2]/PRE, reset_cond/D_stage_q_reg[3]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+XDCC-7#1 Warning
+Scoped Clock constraint overwritten on the same source  
+A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 10.000 -name clk_0 -waveform {0.000 5.000} [get_ports clk] (Source: C:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/constraint/alchitry.xdc (Line: 4))
+Previous: create_clock -period 10.000 [get_ports clk] (Source: c:/Alchitry/Rhythm Heaven Simulator Ver 14.4PM - Hardware/build/vivado/Rhythm Heaven.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc (Line: 53))
+Related violations: <none>
+
+
