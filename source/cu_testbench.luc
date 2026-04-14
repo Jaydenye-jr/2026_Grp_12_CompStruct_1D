@@ -1,0 +1,61 @@
+testbench cu_testbench {
+    sig clk
+    sig rst
+    clk_1ms slow_clk(#WIDTH(7), #CLK_PERIOD_GAP(40), .clk(clk), .rst(rst))
+    cu cu(.clk(clk), .ms_clk(slow_clk.tick), .rst(rst))
+
+    fun tick_clock() {
+        clk = 1
+        $tick()
+        clk = 0
+        $tick()
+        //clk = 1
+        //$tick()
+        //clk = 0
+        //$tick()
+    }
+    fun tick_clock_40(){
+        repeat(40){
+            clk = 1
+            $tick()
+            clk = 0
+            $tick()
+        }
+    }
+
+    test myTest {
+        clk = 0 // initialize the value
+        rst = 0
+        $tick_clock() // capture initial state
+        cu.on_button_hit = 1
+        cu.regfile_rd2 = 32b1
+        $tick_clock()
+        cu.on_button_hit = 0//button needs to be conditioned 1 tick
+        $tick_clock()//2
+        
+        $tick_clock()//3
+        $tick_clock()//4
+        $tick_clock()//5
+        $tick_clock()//6
+        $tick_clock()//7
+        $tick_clock()//8
+        $tick_clock()//1 first idle state
+        //cu.regfile_rd2 = b1//works for exiting 
+        $tick_clock()//9
+        $tick_clock()//10
+        $tick_clock()//11 branch gameover
+        
+        $tick_clock()//12 compare gcreg == mtnts
+        cu.regfile_rd2 = b1 
+        $tick_clock_40()
+        cu.on_button_hit = 1
+        cu.regfile_rd2 = 1
+        $tick_clock()
+        cu.on_button_hit = 0
+        $tick_clock_40()
+        $tick_clock_40()
+
+        // test goes here
+
+    }
+}

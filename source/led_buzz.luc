@@ -1,0 +1,83 @@
+module led_buzz #(
+    DISPLAY_COUNTERWIDTH = $is_sim() ? 8 : 20,
+    FEEDBACK_COUNTERWIDTH =  $is_sim() ? 8 : 21
+)   (
+    input clk,
+    input rst,
+    input buzz_pulse,    // The 1-cycle pulse from your FSM
+    input miss_pulse,
+    input ok_pulse,
+    input good_pulse,
+    output buzzer_pin, //buzzer output
+    output play_led,      // also the led output
+    output miss_led,
+    output ok_led,
+    output good_led
+  ) {
+  
+    .clk(clk) {
+        .rst(rst) {
+            dff disp_counter[DISPLAY_COUNTERWIDTH] 
+            dff miss_counter[FEEDBACK_COUNTERWIDTH]
+            dff ok_counter[FEEDBACK_COUNTERWIDTH]
+            dff good_counter[FEEDBACK_COUNTERWIDTH]
+            dff buzz_active    // Keeps track if the play LED is currently "running"
+            dff miss_active //miss led active
+            dff ok_active //
+            dff good_active
+       
+            }
+        }
+
+     always {
+        buzzer_pin = buzz_active.q   // Buzzer follows the 'active' register
+        play_led = buzz_active.q        // Same with the LED
+        miss_led = miss_active.q
+        ok_led = ok_active.q
+        good_led = good_active.q
+    
+        if (buzz_pulse) {     // FSM says "Go!"
+            buzz_active.d = 1
+            disp_counter.d = 0   // Reset timer
+        } 
+        if(miss_pulse){
+            miss_active.d = 1
+            miss_counter.d = 0   // Reset timer
+        } 
+        if(ok_pulse){
+            ok_active.d = 1
+            ok_counter.d = 0   // Reset timer
+        } 
+        if(good_pulse){
+            good_active.d = 1
+            good_counter.d = 0   // Reset timer
+        }
+        
+        if (buzz_active.q) {
+            disp_counter.d = disp_counter.q + 1
+            if (&disp_counter.q) { // 0.17s at 100MHz
+                buzz_active.d = 0  // Turn off
+            }
+        }
+        if (miss_active.q) {
+            miss_counter.d = miss_counter.q + 1
+            if (&miss_counter.q) { // 0.17s at 100MHz
+                miss_active.d = 0  // Turn off
+            }
+        }
+    
+        if (ok_active.q) {
+            ok_counter.d = ok_counter.q + 1
+            if (&ok_counter.q) { // 0.17s at 100MHz
+                ok_active.d = 0  // Turn off
+            }        
+        }
+        
+        if (good_active.q) {
+            good_counter.d = good_counter.q + 1
+            if (&good_counter.q) { // 0.17s at 100MHz
+                good_active.d = 0  // Turn off
+            }        
+        }
+    }
+}

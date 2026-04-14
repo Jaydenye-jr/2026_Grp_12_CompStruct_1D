@@ -1,0 +1,13 @@
+sv xpm -i "../../../../../../Users/jayde/Documents/Xilinx/2025.2/Vivado/data/rsb/busdef" --include "../../../clk_wiz_0" --include "../../../clk_wiz_1" \
+"C:/Users/jayde/Documents/Xilinx/2025.2/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
+
+verilog xil_defaultlib -i "../../../../../../Users/jayde/Documents/Xilinx/2025.2/Vivado/data/rsb/busdef" --include "../../../clk_wiz_0" --include "../../../clk_wiz_1" \
+"../../../clk_wiz_0/clk_wiz_0_clk_wiz.v" \
+"../../../clk_wiz_0/clk_wiz_0.v" \
+"../../../clk_wiz_1/clk_wiz_1_clk_wiz.v" \
+"../../../clk_wiz_1/clk_wiz_1.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

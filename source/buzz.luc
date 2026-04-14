@@ -1,0 +1,29 @@
+module buzz (
+    input clk_1ms,  // clock
+    input rst,  // reset
+    input buzz_pulse,
+    output buzzer_pin
+) {
+    dff on(#INIT(0), .clk(clk_1ms), .rst(rst))
+    dff duration[4](#INIT(0), .clk(clk_1ms), .rst(rst))
+    
+    always {
+        duration.d = duration.q
+        on.d = on.q
+        buzzer_pin = 0
+        
+        if (buzz_pulse) {
+            on.d = 1 // set buzzer to ON
+        }
+        
+        if (duration.q == 2) {
+            on.d = 0
+            buzzer_pin = 0
+        }
+        
+        if (on.q) {
+            duration.d = duration.q + 1
+            buzzer_pin = 1
+        }
+    }
+}

@@ -1,0 +1,75 @@
+testbench datapath_testbench {
+    sig clk
+    sig rst
+    game_datapath datapath(.clk(clk), .rst(rst))
+
+    fun tick_clock() {
+        clk = 1
+        $tick() // tick without capturing signals
+        clk = 0
+        $tick()
+    }
+
+    test myTest {
+        clk = 0 // initialize the value
+        rst = 1
+        $tick() // capture initial state
+        rst = 0
+        $tick_clock()
+        datapath.button = 1
+        $tick_clock()
+        datapath.button = 0
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        
+        // test goes here
+    }
+}

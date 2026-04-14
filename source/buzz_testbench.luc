@@ -1,0 +1,31 @@
+testbench buzz_testbench {
+    sig clk
+    sig rst
+    buzz buzz(.clk_1ms(clk), .rst(rst))
+
+    fun tick_clock() {
+        clk = 1
+        $tick() // tick without capturing signals
+        clk = 0
+        $tick()
+    }
+
+    test myTest {
+        clk = 0 // initialize the value
+        rst = 0
+        $tick() // capture initial state
+        buzz.buzz_pulse = 0
+        $tick_clock()
+        buzz.buzz_pulse = 1
+        $tick_clock()
+        buzz.buzz_pulse = 0
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $tick_clock()
+        $print("Buzzer pin value: %d", buzz.buzzer_pin)
+        // test goes here
+    }
+}

@@ -1,0 +1,80 @@
+module x_bit_left_shifter #(
+    // parameter declaration, to be set during module instantiation
+    // default value given is 8
+    SHIFT = 8 : SHIFT > -1 & SHIFT < 32,
+    SIZE = 32 : SIZE > 0
+  )(
+    input a[SIZE],
+    input do_shift,
+    input pad,
+    output out[SIZE]
+  ) {
+ 
+  // module declarations
+  // instantiate MUX_2 (32 of them)
+  // other useful intermediary signals, e.g: shifted_bits[32] 
+  mux_2 shift_unit[SIZE];
+  sig in_1shift_unit[SIZE]; // input s1 of each shift_unit MUX
+  
+  always {
+    
+    // assign value to shifted_bits[32] depending on the value of SHIFT
+    // connect the selector of each MUX_2 with shift 
+    shift_unit.s0 = SIZEx{do_shift};
+    in_1shift_unit = c{a[SIZE-1-SHIFT:0], SHIFTx{pad}};
+   
+    // use a repeat-loop to: 
+    // connect input[0] of each MUX_2 with a[i]
+    // connect input[1] of each MUX_2 with the shifted_bits[i] 
+    repeat(i, SIZE){
+       shift_unit.in[i] = c{in_1shift_unit[i], a[i]};
+    }
+
+    out = shift_unit.out;
+    
+  }
+}
+
+module left_shifter (
+    input a[32],
+    input b[5],
+    input pad, // 0 or 1 to pad the empty spaces
+    output shl[32]
+  ) {
+
+  // instantiate 5 units of left shifter with different values 
+  x_bit_left_shifter shifter16(#SHIFT(16));
+  x_bit_left_shifter shifter8(#SHIFT(8));
+  x_bit_left_shifter shifter4(#SHIFT(4));
+  x_bit_left_shifter shifter2(#SHIFT(2));
+  x_bit_left_shifter shifter1(#SHIFT(1));
+ 
+  always {
+
+    // connect the padding 
+    shifter16.pad = pad;
+    shifter8.pad = pad;
+    shifter4.pad = pad;
+    shifter2.pad = pad;
+    shifter1.pad = pad;
+    
+    // enable or disable each shifter using each bit of b
+    shifter16.a = a;
+    shifter16.do_shift = b[4];
+    
+    shifter8.a = shifter16.out;
+    shifter8.do_shift = b[3];
+    
+    shifter4.a = shifter8.out;
+    shifter4.do_shift = b[2];
+    
+    shifter2.a = shifter4.out;
+    shifter2.do_shift = b[1];
+    
+    shifter1.a = shifter2.out;
+    shifter1.do_shift = b[0];
+    
+    // set output as the output of the smallests shifter 
+    shl = shifter1.out;
+  }
+}

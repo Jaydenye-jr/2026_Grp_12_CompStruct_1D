@@ -1,0 +1,65 @@
+module score_display (
+    input score[8],
+    // CHANGED: replaced seg[7]/sel[4] with three separate outputs
+    //added clk rst
+
+    output seg0[7],    // units
+    output seg1[7],    // tens
+    output seg2[7]     // hundreds
+) {
+    // CHANGED: removed multi_seven_seg (no multiplexing needed)
+    // ADDED: one seven_seg decoder per display
+    seven_seg dec0
+    seven_seg dec1
+    seven_seg dec2
+
+    sig tens[4];
+    sig units[4];
+    sig hundreds[4];
+
+    always {
+        // defaults
+        hundreds = 4d10;
+        tens = 4d10;
+        units = 4d0;
+
+        if (score == 8d100) {
+            hundreds = 1;
+            tens = 0;
+            units = 0;
+        } else {
+            hundreds = 4d10;
+            if (score >= 8d90) {
+                tens = 9; units = $resize(score - 8d90, 4);
+            } else if (score >= 8d80) {
+                tens = 8; units = $resize(score - 8d80, 4);
+            } else if (score >= 8d70) {
+                tens = 7; units = $resize(score - 8d70, 4);
+            } else if (score >= 8d60) {
+                tens = 6; units = $resize(score - 8d60, 4);
+            } else if (score >= 8d50) {
+                tens = 5; units = $resize(score - 8d50, 4);
+            } else if (score >= 8d40) {
+                tens = 4; units = $resize(score - 8d40, 4);
+            } else if (score >= 8d30) {
+                tens = 3; units = $resize(score - 8d30, 4);
+            } else if (score >= 8d20) {
+                tens = 2; units = $resize(score - 8d20, 4);
+            } else if (score >= 8d10) {
+                tens = 1; units = $resize(score - 8d10, 4);
+            } else {
+                tens = 4d10;
+                units = $resize(score, 4);
+            }
+        }
+
+        // CHANGED: feed into three decoders instead of multi_seven_seg
+        dec0.char = units;
+        dec1.char = tens;
+        dec2.char = hundreds;
+
+        seg0 = dec0.segs;
+        seg1 = dec1.segs;
+        seg2 = dec2.segs;
+    }
+}

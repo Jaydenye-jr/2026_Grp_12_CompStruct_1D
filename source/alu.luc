@@ -1,0 +1,86 @@
+module alu (
+    signed input a[32],
+    signed input b[32],
+    input alufn[6],
+    signed output out[32],
+    output z,
+    output v,
+    output n
+) {
+
+    adder adder_unit(#SIZE(32))
+    boolean boolean_unit
+    compare compare_unit
+    shifter shifter_unit
+    multiplier multiplier_unit
+    absolute absolute_unit
+    
+    sig adder_out[32]
+    sig compare_out[32]
+    sig boolean_out[32]
+    sig shifter_out[32]
+    sig multiplier_out[32]
+    sig absolute_out[32]
+    sig alu_result[32]  // Intermediate signal for computing flags
+    
+    always {
+        // Connect all inputs
+        adder_unit.a = a
+        adder_unit.b = b
+        adder_unit.alufn0 = alufn[0]
+        
+        compare_unit.z = adder_unit.z
+        compare_unit.v = adder_unit.v
+        compare_unit.n = adder_unit.n
+        compare_unit.alufn = alufn
+        
+        boolean_unit.a = a
+        boolean_unit.b = b
+        boolean_unit.alufn = alufn
+        
+        shifter_unit.a = a
+        shifter_unit.b = b[4:0]
+        shifter_unit.alufn = alufn
+        
+        multiplier_unit.a = a
+        multiplier_unit.b = b
+
+	        absolute_unit.in = a
+        
+        // Prepare outputs with proper bit widths
+        adder_out = adder_unit.s
+        compare_out = c{31x{b0}, compare_unit.cmp}  // Put compare result in LSB, rest are 0
+        boolean_out = boolean_unit.bool
+        shifter_out = shifter_unit.shift
+        multiplier_out = multiplier_unit.mul
+	        absolute_out = absolute_unit.abs
+        
+        // Select ALU result based on ALUFN[5:0]
+        case(alufn[5:0]) {
+            6b000000: alu_result = adder_out      // ADD
+            6b000001: alu_result = adder_out      // SUB
+            6b000010: alu_result = multiplier_out // MUL
+            6b011000: alu_result = boolean_out    // AND
+            6b011110: alu_result = boolean_out    // OR
+            6b010110: alu_result = boolean_out    // XOR
+            6b011010: alu_result = boolean_out    // A (pass)
+            6b100000: alu_result = shifter_out    // SHL
+            6b100001: alu_result = shifter_out    // SHR
+            6b100011: alu_result = shifter_out    // SRA
+            6b110011: alu_result = compare_out    // CMPEQ
+            6b110101: alu_result = compare_out    // CMPLT
+            6b110111: alu_result = compare_out    // CMPLE
+	           6b111111: alu_result = absolute_out   // ABS (additional functionality)
+            default: alu_result = 0
+        }
+        
+        // Assign to output
+        out = alu_result
+        
+        // Compute z, v and n flags
+        z = adder_unit.z
+        v = adder_unit.v
+        n = adder_unit.n
+        
+    }
+}

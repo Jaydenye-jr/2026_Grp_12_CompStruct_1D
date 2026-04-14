@@ -1,0 +1,111 @@
+// regfile.luc
+module regfile (
+    input clk,  // clock
+    input rst,  // reset
+    input wa[4], // write address
+    input we, // write enable
+    input data[32], // data in
+    
+    input ra1[4], // read address port 1
+    input ra2[4], // read address port 2
+    output rd1[32], // read data port 1
+    output rd2[32], // read data port 1
+    
+    // states
+    output score_out[32],
+    output mtn_led_out[32],
+    output miss_led_out[32],
+    output ok_led_out[32],
+    output good_led_out[32],
+    output buzzer_out[32],
+    output gc_out[32]//temp to se gc
+) 
+
+{
+    .clk(clk){
+        .rst(rst){
+            dff gc              [32](#INIT(0)) //R0
+            dff mtn_ts          [32](#INIT(0)) //R1
+            dff next_note_addr  [32](#INIT(0)) //R2
+            dff next_note_ts    [32](#INIT(0)) //R3
+            dff note_play_addr  [32](#INIT(0)) //R4
+            dff note_play_ts    [32](#INIT(0)) //R5
+            dff score           [32](#INIT(0)) //R6
+            dff mtn_pulse       [32](#INIT(0)) //R7
+            dff miss_pulse      [32](#INIT(0)) //R8
+            dff ok_pulse        [32](#INIT(0)) //R9
+            dff good_pulse      [32](#INIT(0)) //R10
+            dff buzz_pulse      [32](#INIT(0)) //R11
+            signed dff temp_1   [32](#INIT(0)) //R12
+            dff temp_2          [32](#INIT(0)) //R13
+        }
+    }
+    
+    always {
+        //write port
+        if (we){
+            case(wa){
+                d0 : gc.d = data
+                d1 : mtn_ts.d = data
+                d2 : next_note_addr.d = data
+                d3 : next_note_ts.d = data
+                d4 : note_play_addr.d = data
+                d5 : note_play_ts.d = data
+                d6 : score.d = data
+                d7 : mtn_pulse.d = data
+                d8 : miss_pulse.d = data
+                d9 : ok_pulse.d = data
+                d10 : good_pulse.d = data
+                d11 : buzz_pulse.d = data
+                d12 : temp_1.d = data
+                d13 : temp_2.d = data
+            }
+        }
+        
+        //read port a
+        case(ra1){
+            d0 : rd1 = gc.q
+            d1 : rd1 = mtn_ts.q
+            d2 : rd1 = next_note_addr.q
+            d3 : rd1 = next_note_ts.q
+            d4 : rd1 = note_play_addr.q
+            d5 : rd1 = note_play_ts.q
+            d6 : rd1 = score.q
+            d7 : rd1 = mtn_pulse.q
+            d8 : rd1 = miss_pulse.q
+            d9 : rd1 = ok_pulse.q
+            d10 : rd1 = good_pulse.q
+            d11 : rd1 = buzz_pulse.q
+            d12 : rd1 = temp_1.q
+            d13 : rd1 = temp_2.q       
+            default : rd1 = 0
+        }
+        
+        //read port b
+        case(ra2){
+            d0 : rd2 = gc.q
+            d1 : rd2 = mtn_ts.q
+            d2 : rd2 = next_note_addr.q
+            d3 : rd2 = next_note_ts.q
+            d4 : rd2 = note_play_addr.q
+            d5 : rd2 = note_play_ts.q
+            d6 : rd2 = score.q
+            d7 : rd2 = mtn_pulse.q
+            d8 : rd2 = miss_pulse.q
+            d9 : rd2 = ok_pulse.q
+            d10 : rd2 = good_pulse.q
+            d11 : rd2 = buzz_pulse.q
+            d12 : rd2 = temp_1.q
+            d13 : rd2 = temp_2.q         
+            default : rd2 = 0
+        }
+
+        score_out    = score.q
+        mtn_led_out  = mtn_pulse.q
+        miss_led_out = miss_pulse.q
+        ok_led_out   = ok_pulse.q
+        good_led_out = good_pulse.q
+        buzzer_out   = buzz_pulse.q
+        gc_out       = gc.q//temp to see gc
+    }
+}

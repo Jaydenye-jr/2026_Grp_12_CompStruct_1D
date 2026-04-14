@@ -1,0 +1,26 @@
+testbench rom_testbench {
+    sig clk
+    rom rom
+
+    fun tick_clock() {
+        clk = 1
+        $silent_tick() // tick without capturing signals
+        clk = 0
+        $tick()
+    }
+
+    test myTest {
+        clk = 0 // initialize the value
+        $tick() // capture initial state
+        rom.addr = 0
+        $tick()
+        $print("ROM Timestamp: %d", rom.timestamp)
+        rom.addr = 25
+        $tick()
+        $print("ROM Timestamp: %d", rom.timestamp)
+        rom.addr = 1
+        $tick()
+        $print("ROM Timestamp: %d", rom.timestamp)
+        // test goes here
+    }
+}

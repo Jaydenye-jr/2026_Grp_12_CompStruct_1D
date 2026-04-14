@@ -1,0 +1,38 @@
+module metronome_led (
+    input clk,
+    input rst,
+    input beat_pulse,   // 1-cycle pulse from FSM every 1s
+    output leds[4]
+  ) {
+
+  .clk(clk) {
+    .rst(rst) {
+      dff beat_ptr[2](#INIT(3));     // Stores which LED is "next"
+      dff active_timer[27]; // Watchdog timer (counts 1s @ 100MHz)
+    }
+  }
+
+  always {
+    // 1. When a pulse arrives, move to next LED and reset timer
+    if (beat_pulse) {
+      beat_ptr.d = beat_ptr.q + 1;
+      active_timer.d = $is_sim() ? 1000 : 10000000; // Set timer to 1 second's worth of cycles (SIMULATOR)
+    } else if (|active_timer.q) {//changed to OR(timer.q)
+      active_timer.d = active_timer.q - 1; // Count down
+    }
+
+    // 2. Combinational Output
+    // Only light up the LED if the timer is still above zero
+    if (|active_timer.q) {
+      case (beat_ptr.q) {
+        2d0: leds = 4b0001;
+        2d1: leds = 4b0010;
+        2d2: leds = 4b0100;
+        2d3: leds = 4b1000;
+        default: leds = 4b0000;
+      }
+    } else {
+      leds = 4b0000; // Automatically turns off when pulse "times out"
+    }
+  }
+}

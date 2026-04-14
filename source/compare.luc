@@ -1,0 +1,18 @@
+module compare (
+    input z,
+    input v,
+    input n,
+    input alufn[6],
+    output cmp
+) {
+    
+    always {
+        // Use ALUFN[2:1] to select comparison type
+        case(alufn[2:1]) {
+            2b01: cmp = z           // CMPEQ: output z
+            2b10: cmp = n ^ v       // CMPLT: output n XOR v (less than)
+            2b11: cmp = z | (n ^ v) // CMPLE: output z OR (n XOR v) (less than or equal)
+            default: cmp = 0
+        }
+    }
+}

@@ -1,0 +1,50 @@
+// A full adder combinational logic unit 
+module fa (
+    input a,
+    input b,
+    input cin,
+    output s,
+    output cout
+) {
+    
+    always {
+        // 1-bit full adder logic
+        s = a ^ b ^ cin                              // sum = a XOR b XOR cin
+        cout = (a & b) | (a & cin) | (b & cin)      // carry out = majority function
+    }
+    
+}
+
+// A ripple-carry-adder combinational logic unit
+module rca #(
+    SIZE = 32 : SIZE > 1
+)(
+    input a[SIZE],
+    input b[SIZE],
+    input cin,
+    //output cout,
+    output s[SIZE]
+) {
+    
+    // instantiate SIZE full adders
+    fa fulladders[SIZE]
+    
+    sig carries[SIZE+1]
+    
+    always {
+        // set initial carry-in
+        carries[0] = cin
+        
+        // chain full adders
+        repeat(i, SIZE) {
+            fulladders.a[i] = a[i]
+            fulladders.b[i] = b[i]
+            fulladders.cin[i] = carries[i]
+            s[i] = fulladders.s[i]
+            carries[i+1] = fulladders.cout[i]
+        }
+        
+        // set output carry-out
+        //cout = carries[SIZE]
+    }
+}

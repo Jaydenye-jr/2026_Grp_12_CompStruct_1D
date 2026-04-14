@@ -1,0 +1,542 @@
+module cu ( 
+    input clk,  // clock 
+    input rst,  // reset 
+    input ms_clk, 
+    input on_button_hit, 
+    input regfile_rd2[32], //for direct reading from regfile for reg 13 
+                           //so that can do comparison stuffs 
+    output alufn[6], 
+    output asel[3], 
+    output bsel[3], 
+    output alu_out_sel[2], 
+    output regfile_wa[4], //rc 
+    output regfile_ra1[4], //ra 
+    output regfile_ra2[4], //rb 
+    output regfile_we, 
+    output debug[6], 
+    output mtn_pulse, 
+    output buzz_pulse, 
+    output miss_pulse, 
+    output ok_pulse, 
+    output good_pulse 
+ 
+) { 
+    enum GameStates{ 
+        //Main states 
+        GAMEOVER, 
+        IDLE, 
+         
+        //Inits 
+        INIT_GC_REG, 
+        INIT_MTN_TS_REG, 
+        INIT_NEXT_NOTE_ADDR,  
+        LOAD_NEXT_NOTE_TS_INIT, 
+        INIT_NOTE_PLAY_ADDR,  
+        LOAD_NOTE_PLAY_TS_INIT,  
+        INIT_SCORE, 
+         
+        //Core Loop 
+        INC_GC_REG,  
+        COMPARE_GC_END_TS,  
+        BRANCH_END_GAME, 
+        //Metrnome 
+        COMPARE_GC_MTN,  
+        BRANCH_MTN,  
+        SET_MTN_PULSE_1,  
+        RESET_MTN_PULSE_0,  
+        ADD_MTN_TS_1000, 
+        //Play Note Logic 
+        COMPARE_GC_NOTE_PLAY_TS,  
+        BRANCH_PLAY_NOTE,  
+        SET_BUZZ_PULSE_1,  
+        RESET_BUZZ_PULSE_0, 
+        INC_NOTE_PLAY_ADDR,  
+        LOAD_NOTE_PLAY_TS_MAIN, 
+        //Miss Logic 
+        SUBTRACT_GC_100,  
+        COMPARE_NEXT_NOTE_TS_TEMP,  
+        BRANCH_MISS, 
+        SET_MISS_PULSE_1,  
+        SET_MISS_PULSE_0, 
+        //Button Hit Logic 
+        SUBTRACT_GC_NEXT_NOTE_TS,  
+        ABSOLUTE_TEMP,  
+        COMPARE_TEMP_100,  
+        BRANCH_VALID_WINDOW, 
+        COMPARE_TEMP_50,  
+        BRANCH_GOOD_HIT, 
+        SET_GOOD_PULSE_1,  
+        RESET_GOOD_PULSE_0,  
+        ADD_2_SCORE, 
+        SET_OK_PULSE_1,  
+        RESET_OK_PULSE_0,  
+        ADD_1_SCORE, 
+        //Advance Next Note 
+        INCR_NEXT_NOTE_ADDR,  
+        LOAD_NEXT_NOTE_TS_MAIN 
+         
+    } 
+ 
+    dff game_fsm[$width(GameStates)](#INIT(GameStates.GAMEOVER), .clk(clk), .rst(rst)) 
+    dff hit_flag(#INIT(0), .clk(clk), .rst(rst)) // for catching hits if it was not immediately processed 
+    dff tick_flag(#INIT(0),.clk(clk), .rst(rst)) 
+    edge_detector hit_edge(.clk(clk), .in(on_button_hit), #RISE(1)) 
+    
+    //edge_detector tick_edge(.clk(clk), .in(clk), #RISE(1)) 
+    always { 
+                // standard setting unless otherwise overwritten by each case  
+        alufn = 0 
+        asel = 0  
+        bsel = 0 
+        regfile_we = 0 
+        regfile_wa = hE//default to reg 14 that isn't used  
+        regfile_ra1 = d0 
+        regfile_ra2 = d0 
+        alu_out_sel = 0 
+         
+         
+        mtn_pulse = 0 
+        buzz_pulse = 0 
+        miss_pulse = 0 
+        ok_pulse = 0 
+        good_pulse = 0 
+         
+        hit_flag.d = hit_flag.q 
+        tick_flag.d = tick_flag.q 
+         
+         
+         
+        if (hit_edge.out) {//to act as temp storage if a button hit was at 
+                           //the same time as ms clk ticks and thus is 
+                           //not immedately processed 
+           hit_flag.d = 1 
+        } 
+        // Catch the 1ms tick NO MATTER WHAT the FSM is doing 
+        if (ms_clk) { 
+            tick_flag.d = 1 
+        } 
+         
+        game_fsm.d = game_fsm.q 
+        debug = game_fsm.q 
+        if (rst){ 
+            game_fsm.d = GameStates.GAMEOVER 
+        } 
+        else{ 
+             case(game_fsm.q){ 
+                GameStates.GAMEOVER: 
+                    if (hit_flag.q) { 
+                        hit_flag.d = 0 
+                        game_fsm.d = GameStates.INIT_GC_REG 
+                    } else { 
+                        game_fsm.d = GameStates.GAMEOVER 
+                    } 
+                GameStates.IDLE:
+                    if (hit_flag.q) { 
+                        hit_flag.d = 0 
+                        game_fsm.d = GameStates.SUBTRACT_GC_NEXT_NOTE_TS 
+                    } else if(tick_flag.q){ 
+                        tick_flag.d = 0 
+                        game_fsm.d = GameStates.INC_GC_REG 
+                    } else { 
+                        game_fsm.d = GameStates.IDLE 
+                    } 
+ 
+                GameStates.INIT_GC_REG: 
+                    alufn = b000000   //follow beta cpu code: ADD: 0x00 
+                    asel = h1         //asel bsel only 3 bits but write hex for easier notation 
+                    bsel = h1        
+                    regfile_we = 1    //we 
+                    regfile_wa = h0   //rc 
+                    alu_out_sel = b00 //alu_out_sel is wdsel, default is 00 for ALU out 
+                    game_fsm.d = GameStates.INIT_MTN_TS_REG 
+                     
+                GameStates.INIT_MTN_TS_REG://1st timestamp is 1ms 
+                    alufn = b000000 
+                    asel = h1 
+                    bsel = h2 //select d1 as the output to add to make 1ms                             
+                    regfile_we = 1 
+                    regfile_wa = h1 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.INIT_NEXT_NOTE_ADDR 
+                     
+                GameStates.INIT_NEXT_NOTE_ADDR: 
+                    regfile_we = 1 
+                    regfile_wa = h2  
+                    alu_out_sel = b11 //select 25 to write as the start addr for nextnote 
+                    game_fsm.d = GameStates.LOAD_NEXT_NOTE_TS_INIT 
+                     
+                GameStates.LOAD_NEXT_NOTE_TS_INIT: 
+                    alufn = b000000 
+                    asel = h0       //read ra (reg 2) 
+                    bsel = h1       //0 
+                    regfile_ra1 = h2  // addr for reg2 
+                    regfile_we = 1 
+                    regfile_wa = h3   // write to reg 3 
+                    alu_out_sel = b01 //read from ROM, not ALUout 
+                    game_fsm.d = GameStates.INIT_NOTE_PLAY_ADDR 
+                     
+                GameStates.INIT_NOTE_PLAY_ADDR: 
+                    regfile_we = 1 
+                    regfile_wa = h4 
+                    alu_out_sel = b10 //select 0 to write as start addr for note_play 
+                    game_fsm.d = GameStates.LOAD_NOTE_PLAY_TS_INIT   
+                     
+                GameStates.LOAD_NOTE_PLAY_TS_INIT: 
+                    alufn = b000000 
+                    asel = h0       //read ra (reg 4) 
+                    bsel = h1       //0 
+                    regfile_ra1 = h4  // addr for reg4 
+                    regfile_we = 1 
+                    regfile_wa = h5   // write to reg 5 
+                    alu_out_sel = b01 //read from ROM, not ALUout 
+                    game_fsm.d = GameStates.INIT_SCORE 
+                     
+                     
+                GameStates.INIT_SCORE: 
+                    alufn = b000000    
+                    asel = h1      
+                    bsel = h1    
+                    regfile_we = 1     
+                    regfile_wa = h6    
+                    alu_out_sel = b00  
+                    game_fsm.d = GameStates.IDLE 
+                     
+                GameStates.INC_GC_REG: 
+                    alufn = b000000 
+                    asel = h0 
+                    bsel = h2 //add 1 
+                    regfile_ra1 = h0 
+                    regfile_we = 1 
+                    regfile_wa = h0 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.COMPARE_GC_END_TS 
+                     
+                GameStates.COMPARE_GC_END_TS: 
+                    alufn = b110011 
+                    asel = h0 
+                    bsel = h3
+                    regfile_ra1 = h0 
+                    regfile_we = 1 
+                    regfile_wa = hC 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.BRANCH_END_GAME 
+                     
+                GameStates.BRANCH_END_GAME: 
+                    regfile_ra2 = hC  
+                    if (regfile_rd2[0]){ 
+                        game_fsm.d = GameStates.GAMEOVER 
+                    } 
+                    else{ 
+                        game_fsm.d = GameStates.COMPARE_GC_MTN 
+                    } 
+                     
+                GameStates.COMPARE_GC_MTN: 
+                    alufn = b110011 
+                    asel = h0 
+                    bsel = h0 
+                    regfile_ra1 = h0 
+                    regfile_ra2 = h1 
+                    regfile_we = 1 
+                    regfile_wa = hC 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.BRANCH_MTN 
+                     
+               GameStates.BRANCH_MTN: 
+                    regfile_ra2 = hC  
+                    if (regfile_rd2 == 32b1){
+                        game_fsm.d = GameStates.SET_MTN_PULSE_1 
+                    } 
+                    else{ 
+                        game_fsm.d = GameStates.COMPARE_GC_NOTE_PLAY_TS      
+                    } 
+                     
+               GameStates.SET_MTN_PULSE_1: 
+                    //alufn = b000000 
+                    //asel = h1 
+                    //bsel = h2 
+                    //regfile_we = 1 
+                    //regfile_wa = h7 
+                    //alu_out_sel = b00  
+                    mtn_pulse = 1 
+                    game_fsm.d = GameStates.RESET_MTN_PULSE_0 
+                     
+               GameStates.RESET_MTN_PULSE_0: 
+                    //alufn = b000000 
+                    //asel = h1 
+                    //bsel = h0 
+                    //regfile_we = 1 
+                    //regfile_wa = h7 
+                    //alu_out_sel = b00  
+                    mtn_pulse = 0 
+                    game_fsm.d = GameStates.ADD_MTN_TS_1000 
+                     
+              GameStates.ADD_MTN_TS_1000: 
+                    alufn = b000000 
+                    asel = h0 
+                    bsel = h4 
+                    regfile_ra1 = h1  
+                    regfile_we = 1 
+                    regfile_wa = h1 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.COMPARE_GC_NOTE_PLAY_TS 
+                     
+              GameStates.COMPARE_GC_NOTE_PLAY_TS: 
+                    alufn = b110011 
+                    asel = h0 
+                    bsel = h0 
+                    regfile_ra1 = h0 
+                    regfile_ra2 = h5 
+                    regfile_we = 1 
+                    regfile_wa = hC 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.BRANCH_PLAY_NOTE 
+                     
+               GameStates.BRANCH_PLAY_NOTE: 
+                    regfile_ra2 = hC 
+                    if (regfile_rd2[0]){ 
+                        game_fsm.d = GameStates.SET_BUZZ_PULSE_1 
+                    } 
+                    else{ 
+                        game_fsm.d = GameStates.SUBTRACT_GC_100 
+                    } 
+                     
+              GameStates.SET_BUZZ_PULSE_1: 
+                    //alufn = b000000 
+                    //asel = h1 
+                    //bsel = h2 
+                    //regfile_we = 1 
+                    //regfile_wa = h8 
+                    //alu_out_sel = b11 
+                    buzz_pulse = 1 
+                    game_fsm.d = GameStates.RESET_BUZZ_PULSE_0 
+                                         
+              GameStates.RESET_BUZZ_PULSE_0: 
+                    //alufn = b000000 
+                    //asel = h1
+                    //bsel = h1 
+                    //regfile_we = 1 
+                    //regfile_wa = h8 
+                    //alu_out_sel = b11 
+                    buzz_pulse = 0 
+                    game_fsm.d = GameStates.INC_NOTE_PLAY_ADDR                     
+                     
+                     
+              GameStates.INC_NOTE_PLAY_ADDR: 
+                    alufn = b000000 
+                    asel = h0 
+                    bsel = h2 
+                    regfile_ra1 = h4 
+                    regfile_we = 1 
+                    regfile_wa = h4 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.LOAD_NOTE_PLAY_TS_MAIN 
+                 
+             GameStates.LOAD_NOTE_PLAY_TS_MAIN: 
+                    alufn = b000000 
+                    asel = h0       //read ra (reg 4) 
+                    bsel = h1       //0 
+                    regfile_ra1 = h4  // addr for reg4 
+                    regfile_we = 1 
+                    regfile_wa = h5   // write to reg 5 
+                    alu_out_sel = b01 //read from ROM, not ALUout 
+                    game_fsm.d = GameStates.SUBTRACT_GC_100 
+                     
+             GameStates.SUBTRACT_GC_100: 
+                    alufn = b000001   // SUB (0x21) 
+                    asel = h0         // gc_reg 
+                    bsel = h5         // ASSUMPTION: bsel h5 = Constant 100 
+                    regfile_ra1 = h0   
+                    regfile_we = 1 
+                    regfile_wa = hC   // write to temp_reg_1 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.COMPARE_NEXT_NOTE_TS_TEMP 
+                     
+             GameStates.COMPARE_NEXT_NOTE_TS_TEMP: 
+                    alufn = b110101   // CMPLT 
+                    asel = h0         // next_note_ts 
+                    bsel = h0         // temp_reg_1 (gc_reg - 100) 
+                    regfile_ra1 = h3   
+                    regfile_ra2 = hC   
+                    regfile_we = 1 
+                    regfile_wa = hC   // Overwrite temp_reg_1 with boolean result 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.BRANCH_MISS 
+                     
+             GameStates.BRANCH_MISS: 
+                    regfile_ra2 = hC  // Read the comparison result 
+                    if (regfile_rd2[0]) { 
+                        game_fsm.d = GameStates.SET_MISS_PULSE_1 
+                    } else { 
+                        game_fsm.d = GameStates.IDLE 
+                    } 
+                     
+             GameStates.SET_MISS_PULSE_1: 
+                    //alufn = b000000 
+                    //asel = h1         // 0 
+                    //bsel = h2         // 1 
+                    //regfile_we = 1 
+                    //regfile_wa = h8   // miss_pulse_reg (Assuming h9) 
+                    //alu_out_sel = b00  
+                    miss_pulse = 1 
+                    game_fsm.d = GameStates.SET_MISS_PULSE_0 
+                     
+            GameStates.SET_MISS_PULSE_0: 
+                    //alufn = b000000 
+                    //asel = h1         // 0 
+                    //bsel = h1         // 0 
+                    //regfile_we = 1 
+                    //regfile_wa = h8    
+                    //alu_out_sel = b00  
+                    miss_pulse = 0 
+                    game_fsm.d = GameStates.INCR_NEXT_NOTE_ADDR 
+                     
+             // ============================================ 
+             // BUTTON HIT LOGIC (Yellow & Green Branch) 
+             // ============================================ 
+            GameStates.SUBTRACT_GC_NEXT_NOTE_TS: 
+                    alufn = b000001   // SUB (0x21) 
+                    asel = h0 
+                    bsel = h0 
+                    regfile_ra1 = h0  // gc_reg
+                    regfile_ra2 = h3  // next_note_ts 
+                    regfile_we = 1 
+                    regfile_wa = hC   // temp_reg_1 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.ABSOLUTE_TEMP 
+                     
+            GameStates.ABSOLUTE_TEMP: 
+                    alufn = b111111   // ASSUMPTION: Custom ALU opcode for ABSOLUTE value 
+                    asel = h0 
+                    regfile_ra1 = hC  // Read the subtracted difference 
+                    regfile_we = 1 
+                    regfile_wa = hC   // Write positive difference back 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.COMPARE_TEMP_100 
+                     
+            GameStates.COMPARE_TEMP_100: 
+                    alufn = b110111   // CMPLE  
+                    asel = h0 
+                    bsel = h5         // ASSUMPTION: bsel h5 = Constant 100 
+                    regfile_ra1 = hC 
+                    regfile_we = 1 
+                    regfile_wa = hD   // Write boolean to temp_reg_2 so that absolute value remains in temp_1! 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.BRANCH_VALID_WINDOW 
+                     
+            GameStates.BRANCH_VALID_WINDOW: 
+                    regfile_ra2 = hD 
+                    if (regfile_rd2[0]) { 
+                        game_fsm.d = GameStates.COMPARE_TEMP_50 
+                    } else { 
+                        game_fsm.d = GameStates.IDLE 
+                    } 
+ 
+            GameStates.COMPARE_TEMP_50: 
+                    alufn = b110111   // CMPLE  
+                    asel = h0 
+                    bsel = h6         // ASSUMPTION: bsel h6 = Constant 50 
+                    regfile_ra1 = hC  // Read the original absolute value we saved earlier 
+                    regfile_we = 1 
+                    regfile_wa = hD   // Overwrite temp_reg_2 flag 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.BRANCH_GOOD_HIT 
+                     
+            GameStates.BRANCH_GOOD_HIT: 
+                    regfile_ra2 = hD 
+                    if (regfile_rd2[0]) { 
+                        game_fsm.d = GameStates.SET_GOOD_PULSE_1 
+                    } else { 
+                        game_fsm.d = GameStates.SET_OK_PULSE_1 
+                    } 
+                     
+            // --- GREEN: Good Hit Logic --- 
+            GameStates.SET_GOOD_PULSE_1: 
+                    //alufn = b000000 
+                    //asel = h1         // 0 
+                    //bsel = h2         // 1 
+                    //regfile_we = 1 
+                    //regfile_wa = hA   
+                    //alu_out_sel = b00  
+                    good_pulse = 1 
+                    game_fsm.d = GameStates.RESET_GOOD_PULSE_0         
+                     
+            GameStates.RESET_GOOD_PULSE_0: 
+                    //alufn = b000000 
+                    //asel = h1         // 0 
+                    //bsel = h1         // 0 
+                    //regfile_we = 1 
+                    //regfile_wa = hA    
+                    //alu_out_sel = b00 
+                    good_pulse = 0 
+                    game_fsm.d = GameStates.ADD_2_SCORE         
+                     
+            GameStates.ADD_2_SCORE: 
+                    alufn = b000000   // ADD 
+                    asel = h0 
+                    bsel = h7         // ASSUMPTION: bsel h7 = Constant 2 
+                    regfile_ra1 = h6  // score_reg 
+                    regfile_we = 1 
+                    regfile_wa = h6 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.INCR_NEXT_NOTE_ADDR          
+                     
+            // --- YELLOW: Ok Hit Logic --- 
+            GameStates.SET_OK_PULSE_1:
+                    //alufn = b000000 
+                    //asel = h1         // 0 
+                    //bsel = h2         // 1 
+                    //regfile_we = 1 
+                    //regfile_wa = h9    
+                    //alu_out_sel = b00  
+                    ok_pulse = 1 
+                    game_fsm.d = GameStates.RESET_OK_PULSE_0       
+                     
+            GameStates.RESET_OK_PULSE_0: 
+                    //alufn = b000000 
+                    //asel = h1         // 0 
+                    //bsel = h1         // 0 
+                    //regfile_we = 1 
+                    //regfile_wa = h9    
+                    //alu_out_sel = b00  
+                    ok_pulse = 0 
+                    game_fsm.d = GameStates.ADD_1_SCORE     
+                     
+             GameStates.ADD_1_SCORE: 
+                    alufn = b000000   // ADD 
+                    asel = h0 
+                    bsel = h2         // Constant 1 
+                    regfile_ra1 = h6  // score_reg 
+                    regfile_we = 1 
+                    regfile_wa = h6 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.INCR_NEXT_NOTE_ADDR 
+                     
+            // ============================================ 
+                // ADVANCE NEXT NOTE (White Branch) 
+                // ============================================ 
+             GameStates.INCR_NEXT_NOTE_ADDR: 
+                    alufn = b000000   // ADD 
+                    asel = h0 
+                    bsel = h2         // Constant 1 
+                    regfile_ra1 = h2  // next_note_addr 
+                    regfile_we = 1 
+                    regfile_wa = h2 
+                    alu_out_sel = b00 
+                    game_fsm.d = GameStates.LOAD_NEXT_NOTE_TS_MAIN  
+                     
+             GameStates.LOAD_NEXT_NOTE_TS_MAIN: 
+                    alufn = b000000 
+                    asel = h0         // read ra 
+                    bsel = h1         // 0 
+                    regfile_ra1 = h2  // addr for next note 
+                    regfile_we = 1 
+                    regfile_wa = h3   // write to next_note_ts 
+                    alu_out_sel = b01 // Read from ROM 
+                    game_fsm.d = GameStates.IDLE 
+                     
+            } 
+             
+ 
+        } 
+    } 
+}

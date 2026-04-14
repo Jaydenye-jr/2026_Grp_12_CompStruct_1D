@@ -1,0 +1,7 @@
+xpm_cdc.sv,systemverilog,xpm,../../Users/jayde/Documents/Xilinx/2025.2/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv,incdir="../../../../../../Users/jayde/Documents/Xilinx/2025.2/Vivado/data/rsb/busdef"incdir="../../../clk_wiz_0"incdir="../../../clk_wiz_1"
+xpm_VCOMP.vhd,vhdl,xpm,../../Users/jayde/Documents/Xilinx/2025.2/Vivado/data/ip/xpm/xpm_VCOMP.vhd,incdir="../../../../../../Users/jayde/Documents/Xilinx/2025.2/Vivado/data/rsb/busdef"incdir="../../../clk_wiz_0"incdir="../../../clk_wiz_1"
+clk_wiz_0_clk_wiz.v,verilog,xil_defaultlib,../../../clk_wiz_0/clk_wiz_0_clk_wiz.v,incdir="../../../../../../Users/jayde/Documents/Xilinx/2025.2/Vivado/data/rsb/busdef"incdir="../../../clk_wiz_0"incdir="../../../clk_wiz_1"
+clk_wiz_0.v,verilog,xil_defaultlib,../../../clk_wiz_0/clk_wiz_0.v,incdir="../../../../../../Users/jayde/Documents/Xilinx/2025.2/Vivado/data/rsb/busdef"incdir="../../../clk_wiz_0"incdir="../../../clk_wiz_1"
+clk_wiz_1_clk_wiz.v,verilog,xil_defaultlib,../../../clk_wiz_1/clk_wiz_1_clk_wiz.v,incdir="../../../../../../Users/jayde/Documents/Xilinx/2025.2/Vivado/data/rsb/busdef"incdir="../../../clk_wiz_0"incdir="../../../clk_wiz_1"
+clk_wiz_1.v,verilog,xil_defaultlib,../../../clk_wiz_1/clk_wiz_1.v,incdir="../../../../../../Users/jayde/Documents/Xilinx/2025.2/Vivado/data/rsb/busdef"incdir="../../../clk_wiz_0"incdir="../../../clk_wiz_1"
+glbl.v,Verilog,xil_defaultlib,glbl.v

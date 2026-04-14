@@ -1,0 +1,60 @@
+    testbench clk_1ms_testbench {
+        // 1. Instantiate the module and OVERRIDE the parameters to 10ms
+        sig clk
+        sig rst
+        clk_1ms my_timer( #CLK_PERIOD_GAP(2), #WIDTH(3),.clk(clk), .rst(rst))
+        
+        // 2. Helper function to advance the clock and generate the waveform graph
+        fun tick_clock() {
+            clk = 1
+            $tick()
+            clk = 0
+            $tick()
+        }
+    
+        // 3. Initial State & System Reset
+        test myTest {
+            clk = 0
+            rst = 1  // Start with reset HIGH to load the INIT(MAX_VAL) into the DFF
+        
+            $tick_clock()
+        
+            rst = 0  // Release reset to let the timer start counting down
+            
+            // Check that it starts with tick OFF
+            $assert(my_timer.tick == 0)
+            $print("Reset successful. Tick is OFF. Counter is at 2.")
+    
+    
+    
+            // --- CYCLE 0 (Counter = 2) ---
+            $assert(my_timer.tick == 0)
+            $print("Cycle 0: Counter is at 2. Tick is OFF.")
+            $tick_clock()
+            
+            // --- CYCLE 1 (Counter = 1) ---
+            $assert(my_timer.tick == 0)
+            $print("Cycle 1: Counter is at 1. Tick is OFF.")
+            $tick_clock()
+    
+            // --- CYCLE 3 (Counter = 0) ---
+            $assert(my_timer.tick == 0)
+            $print("Cycle 2: Counter is at 0. Tick is OFF.")
+            $tick_clock()
+    
+            // --- CYCLE 3 (Counter = -1 / Binary 111) ---
+            // The Sign Bit (index 2) is now 1. The FSM should output tick = 1!
+            $assert(my_timer.tick == 1)
+            $print("Cycle 3: Counter hit -1! Sign bit detected. TICK PULSE FIRED!")
+            $tick_clock()
+    
+            // --- CYCLE 4 (Hardware automatically resets back to 3) ---
+            $assert(my_timer.tick == 0)
+            $print("Cycle 4: Counter reset back to 2. Tick turned OFF automatically!")
+            $tick_clock();
+        
+            $print("All assertions passed! The sign-bit timer works perfectly.")
+            
+        }
+    
+    }

@@ -1,0 +1,46 @@
+module adder #(
+    SIZE ~ 32 : SIZE > 1
+)(
+    input a[SIZE],
+    input b[SIZE],
+    input alufn0,
+    output s[SIZE],
+    output z,
+    output v,
+    output n
+) {
+    
+    #SIZE(SIZE) {
+        rca rca_unit
+    }
+    
+    sig xb[SIZE]
+    sig sum[SIZE]
+    
+    always {
+        // For subtraction, negate b by XORing with alufn0
+        repeat(i, SIZE) {
+            xb[i] = b[i] ^ alufn0
+        }
+        
+        // Connect RCA with alufn0 as initial carry-in
+        rca_unit.a = a
+        rca_unit.b = xb
+        rca_unit.cin = alufn0
+        sum = rca_unit.s
+        
+        // Output results
+        s = sum
+        
+        // Z flag: true when all bits of sum are 0 (NOR reduction)
+        z = ~|sum
+        
+        // V flag: overflow detection
+        // V = A[31]·XB[31]·S[31]' + A[31]'·XB[31]'·S[31]
+        v = (a[SIZE-1] & xb[SIZE-1] & ~sum[SIZE-1]) | 
+            (~a[SIZE-1] & ~xb[SIZE-1] & sum[SIZE-1])
+        
+        // N flag: true when sum is negative (MSB is 1)
+        n = sum[SIZE-1]
+    }
+}

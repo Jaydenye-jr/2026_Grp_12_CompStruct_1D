@@ -1,0 +1,34 @@
+module shifter (
+    input a[32],  // clock
+    input b[32],  // reset
+    input alufn[6],
+    output shift[32]
+) {
+    
+    left_shifter left_shifter(.b(b[5:0]))
+    
+    always {
+        left_shifter.a = a
+        left_shifter.pad = 0
+        
+        case (alufn[1:0]) {
+          2b00: //left shift
+            left_shifter.a = a
+            left_shifter.pad = 0
+            shift = left_shifter.shl;
+            
+          2b01: //right shift
+            left_shifter.a = $reverse(a)
+            left_shifter.pad = 0
+            shift = $reverse(left_shifter.shl);
+                
+          2b11: //right shift arithmetic
+            left_shifter.a = $reverse(a)
+            left_shifter.pad = a[31]
+            shift = $reverse(left_shifter.shl);
+                
+        default:
+            shift = 0;
+        }
+    }
+}

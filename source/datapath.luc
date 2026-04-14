@@ -1,0 +1,114 @@
+module game_datapath(
+    input button,
+    input clk,  // clock
+    input rst,  // reset
+    
+    // output to LEDs/7segments
+    output score_out[32],
+    output mtn_led_out[32],
+    output miss_led_out[32],
+    output ok_led_out[32],
+    output good_led_out[32],
+    output buzzer_out[32],
+    output gc_out[32],//temp to see gc
+    
+    // debug signals
+    output debug_general[6]
+) {
+    
+    //temp variables
+    sig input_alu_a[32]
+    sig input_alu_b[32]
+    
+    
+    .clk(clk){
+        clk_1ms slow_clk(.rst(rst))
+        
+        // edge detector declaration & connection with counters
+        edge_detector edge_detector_clk_1ms (#RISE(1), #FALL(0), .in(slow_clk.tick))
+        //edge_detector edge_detector_clk (#RISE(1), #FALL(0), .in(clk))
+        
+        cu game_cu(
+            .on_button_hit(button),
+            .rst(rst),
+            .ms_clk(edge_detector_clk_1ms.out) //change back to edgedetector
+        )
+        
+        regfile game_regfiles(
+            .we(game_cu.regfile_we), 
+            .wa(game_cu.regfile_wa), 
+            .ra1(game_cu.regfile_ra1), 
+            .ra2(game_cu.regfile_ra2),
+            .rst(rst)
+        )
+    }
+    
+    alu game_alu
+    rom rom(.addr(game_alu.out))
+    led_buzz buzz(.clk(clk), .rst(rst), 
+        .buzz_pulse(game_cu.buzz_pulse), 
+        .miss_pulse(game_cu.miss_pulse),
+        .ok_pulse(game_cu.ok_pulse),
+        .good_pulse(game_cu.good_pulse)
+    )
+    metronome_led mtn_led(.clk(clk), .rst(rst), .beat_pulse(game_cu.mtn_pulse))
+    
+    always {
+        // bootstrap rd2 output to CU for convenient branching conditions
+        game_cu.regfile_rd2 = game_regfiles.rd2
+        
+        // asel mux
+        case(game_cu.asel){
+            b000 : input_alu_a = game_regfiles.rd1
+            b001 : input_alu_a = 32d0
+            b010 : input_alu_a = 32d1
+            b011 : input_alu_a = 32d800001
+            b100 : input_alu_a = 32d1000
+            b101 : input_alu_a = 32d100
+            b110 : input_alu_a = 32d50
+            b111 : input_alu_a = 32d2
+            default : //b10 unused
+                input_alu_a = 0
+        }
+        
+        // bsel mux
+        case(game_cu.bsel){
+            b000 : input_alu_b = game_regfiles.rd2
+            b001 : input_alu_b = 32d0
+            b010 : input_alu_b = 32d1
+            b011 : input_alu_b = 32d80001
+            b100 : input_alu_b = 32d1000
+            b101 : input_alu_b = 32d100
+            b110 : input_alu_b = 32d50
+            b111 : input_alu_b = 32d2
+            default: //necessary to init
+                input_alu_b = 0 
+        }
+        
+        // alu
+        game_alu.a = input_alu_a
+        game_alu.b = input_alu_b
+        game_alu.alufn = game_cu.alufn
+        
+        // wdsel mux
+        case (game_cu.alu_out_sel){
+            b00 : game_regfiles.data = game_alu.out
+            b01 : game_regfiles.data = rom.timestamp
+            b10 : game_regfiles.data = 32d0
+            b11 : game_regfiles.data = 32d25
+            default : 
+                game_regfiles.data = game_alu.out
+        }
+       
+        score_out = game_regfiles.score_out
+        mtn_led_out = game_cu.mtn_pulse
+        miss_led_out = game_cu.miss_pulse
+        ok_led_out = game_cu.ok_pulse
+        good_led_out = game_cu.good_pulse
+        buzzer_out = game_cu.buzz_pulse
+        gc_out    = game_regfiles.gc_out//temp to see gc
+        
+        debug_general = game_cu.debug
+        
+    }
+}
